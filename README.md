@@ -10,7 +10,7 @@ Johannes Obermair
 Patrick Obermüller  
 Valters Pukitis  
 
-##Prinzipien
+## Prinzipien
 Wir sind ein geile Kombination als Team.  
 Jeder trägt Verantwortung für den Erfolg der Web Applikation.  
 
@@ -28,4 +28,4 @@ CSS Präprozessor: SASS
 
 [Semantic UI](http://semantic-ui.com/)  
 [Bootstrap](http://getbootstrap.com/)  
-*inaktiv*[Slack](https://vajopa.slack.com/messages/general/)  
+*inaktiv* [Slack](https://vajopa.slack.com/messages/general/)
