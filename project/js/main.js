@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $task = $('.task');
+    var $task = $('.task');
 
     $task.on('swiperight', destroyTarget);
 
