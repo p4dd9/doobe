@@ -1,6 +1,8 @@
+'use strict';
+
 $(document).ready(function () {
 
-    let $task = $('.task');
+    var $task = $('.task');
 
     $task.on('swiperight', destroyTarget);
 
@@ -8,3 +10,5 @@ $(document).ready(function () {
         this.remove();
     }
 });
+
+//# sourceMappingURL=main-compiled.js.map
