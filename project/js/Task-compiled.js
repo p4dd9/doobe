@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -6,38 +6,46 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Rank = require('./Rank.js');
-
-var _Rank2 = _interopRequireDefault(_Rank);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Task = function () {
     function Task() {
         var dueDate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Date.now();
-        var rank = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new _Rank2.default();
+        var taskText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "taskText";
+        var workload = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;
 
         _classCallCheck(this, Task);
 
-        this.startDate = dueDate;
+        this._id = this.generateID();
+        this.createdDate = Date.now();
         this.dueDate = dueDate;
-        this.rank = rank;
+        this.taskText = taskText;
+        this.workload = workload; // fibonacci 1, 2, 3, 5, 8, 13
     }
 
     _createClass(Task, [{
-        key: 'getTimeSpan',
+        key: "getTimeSpan",
         value: function getTimeSpan() {
-            console.log(this.dueDate);
-            console.log(this.startDate);
+            var dueDate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.dueDate;
 
-            return this.dueDate - this.startDate;
+            return dueDate - this.createdDate;
         }
     }, {
-        key: 'setRankName',
-        value: function setRank(rank) {
-            this.rank = rank;
+        key: "generateID",
+        value: function generateID() {
+            /*let numPattern = /[0-9]/g;
+            return parseInt((numPattern.exec(new Date().toISOString())), 10); // only gets first digit?*/
+
+            return Date.now();
+        }
+    }, {
+        key: "calcXpGain",
+        value: function calcXpGain() {
+            var elapsedTime = this.getTimeSpan(Date.now());
+            var originalTimeSpan = this.getTimeSpan();
+            var timeBonus = originalTimeSpan / elapsedTime;
+
+            return timeBonus * this.workload; // possible: add random factor
         }
     }]);
 
@@ -45,5 +53,6 @@ var Task = function () {
 }();
 
 exports.default = Task;
+;
 
 //# sourceMappingURL=Task-compiled.js.map

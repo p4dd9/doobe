@@ -24,11 +24,6 @@ var Rank = function () {
         value: function addXp(amount) {
             this.xp += amount;
         }
-    }, {
-        key: 'setRankName',
-        value: function setRankName(name) {
-            this.name = name;
-        }
     }]);
 
     return Rank;

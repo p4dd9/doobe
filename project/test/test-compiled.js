@@ -11,10 +11,6 @@ describe('task-test', function () {
     it('time between same day', function () {
         task.getTimeSpan().should.eql(0);
     });
-
-    it('default name should be example-name', function () {
-        task.rank.name.should.eql('example-name');
-    });
 });
 
 //# sourceMappingURL=test-compiled.js.map

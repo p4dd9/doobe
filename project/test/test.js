@@ -5,8 +5,4 @@ describe('task-test', () => {
     it('time between same day', () => {
         task.getTimeSpan().should.eql(0);
     });
-
-    it('default name should be example-name', () => {
-        task.rank.name.should.eql('example-name');
-    });
 });

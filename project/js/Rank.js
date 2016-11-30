@@ -7,8 +7,4 @@ export default class Rank {
     addXp(amount){
         this.xp += amount;
     }
-
-    setRankName(name) {
-        this.name = name;
-    }
 }
