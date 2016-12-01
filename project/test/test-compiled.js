@@ -19,9 +19,20 @@ describe('task-test', function () {
     });
 
     var rank2 = new _Rank2.default();
+    rank1.level = 2;
+    rank2.xp = 200;
 
-    console.log(rank1.time);
-    console.log(rank2.time);
+    it('test Rank-Singleton on level', function () {
+        return rank1.level === rank2.level;
+    });
+
+    it('test Rank-Singleton on time', function () {
+        return rank1.time === rank2.time;
+    });
+
+    it('test Rank-Singleton on xp', function () {
+        return rank1.xp === rank2.xp;
+    });
 });
 
 //# sourceMappingURL=test-compiled.js.map

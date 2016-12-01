@@ -10,7 +10,18 @@ describe('task-test', () => {
     });
 
     let rank2 = new Rank();
+    rank1.level = 2;
+    rank2.xp = 200;
 
-    console.log(rank1.time);
-    console.log(rank2.time);
+    it('test Rank-Singleton on level', () => {
+        return rank1.level === rank2.level
+    });
+
+    it('test Rank-Singleton on time', () => {
+        return rank1.time === rank2.time
+    });
+
+    it('test Rank-Singleton on xp', () => {
+        return rank1.xp === rank2.xp
+    });
 });
