@@ -1,4 +1,4 @@
-import Task from '../js/Task.js'
+import Task from '../js/Task'
 import Rank from '../js/Rank'
 
 describe('task-test', () => {

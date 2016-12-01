@@ -1,6 +1,6 @@
 'use strict';
 
-var _Task = require('../js/Task.js');
+var _Task = require('../js/Task');
 
 var _Task2 = _interopRequireDefault(_Task);
 
