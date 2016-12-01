@@ -13,11 +13,16 @@ export default class Task {
 
     generateID() {
         /*let numPattern = /[0-9]/g;
-        return parseInt((numPattern.exec(new Date().toISOString())), 10); // only gets first digit?*/
+        return parseInt((numPattern.exec(new Date().toISOString())), 10);*/
 
         return Date.now();
     }
 
+    /***
+     * calculates the amout of xp depending on the amount of workload
+     * and when the task has been finish (the earlier, the better)
+     * @returns {number}
+     */
     calcXpGain() {
         let elapsedTime = this.getTimeSpan(Date.now());
         let originalTimeSpan = this.getTimeSpan();

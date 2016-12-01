@@ -34,10 +34,17 @@ var Task = function () {
         key: "generateID",
         value: function generateID() {
             /*let numPattern = /[0-9]/g;
-            return parseInt((numPattern.exec(new Date().toISOString())), 10); // only gets first digit?*/
+            return parseInt((numPattern.exec(new Date().toISOString())), 10);*/
 
             return Date.now();
         }
+
+        /***
+         * calculates the amout of xp depending on the amount of workload
+         * and when the task has been finish (the earlier, the better)
+         * @returns {number}
+         */
+
     }, {
         key: "calcXpGain",
         value: function calcXpGain() {
