@@ -13,7 +13,7 @@ lists = document.getElementsByClassName('task');
 let g=1;
 for (let i = 0; i < lists.length;i++) {
 
-    lists[i].style.backgroundColor = 'rgba(0,0,0,'+g+')';
+    lists[i].style.backgroundColor = 'rgba(,'+g+')';
 
-    g-=0.1;
+    g-=(1/lists.length);
 }

@@ -15,9 +15,9 @@ lists = document.getElementsByClassName('task');
 var g = 1;
 for (var i = 0; i < lists.length; i++) {
 
-    lists[i].style.backgroundColor = 'rgba(0,0,0,' + g + ')';
+    lists[i].style.backgroundColor = 'rgba(,' + g + ')';
 
-    g -= 0.1;
+    g -= 1 / lists.length;
 }
 
 //# sourceMappingURL=main-compiled.js.map
