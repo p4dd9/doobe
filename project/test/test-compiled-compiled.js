@@ -8,7 +8,9 @@ var _Rank = require('../js/Rank');
 
 var _Rank2 = _interopRequireDefault(_Rank);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
 
 describe('task-test', function () {
     var task = new _Task2.default();
@@ -36,3 +38,5 @@ describe('task-test', function () {
 });
 
 //# sourceMappingURL=test-compiled.js.map
+
+//# sourceMappingURL=test-compiled-compiled.js.map

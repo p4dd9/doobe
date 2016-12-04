@@ -15,7 +15,7 @@ lists = document.getElementsByClassName('task');
 var g = 1;
 for (var i = 0; i < lists.length; i++) {
 
-    lists[i].style.backgroundColor = 'rgba(,' + g + ')';
+    lists[i].style.backgroundColor = 'rgba(0,90,100,' + g + ')';
 
     g -= 1 / lists.length;
 }

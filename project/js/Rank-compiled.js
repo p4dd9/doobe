@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -8,27 +8,31 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var instance = null;
+
 var Rank = function () {
     function Rank() {
-        var xp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-        var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'example-name';
-
         _classCallCheck(this, Rank);
 
-        this.xp = xp;
-        this.name = name;
+        this.xp = 0;
+        this.level = 1;
+
+        if (!instance) {
+            instance = this;
+        }
+        return instance;
     }
 
     _createClass(Rank, [{
-        key: 'addXp',
+        key: "addXp",
         value: function addXp(amount) {
             this.xp += amount;
         }
-    }, {
-        key: 'setRankName',
-        value: function setRankName(name) {
-            this.name = name;
-        }
+
+        /***
+         * http://onlyagame.typepad.com/only_a_game/2006/08/mathematics_of_.html
+         */
+
     }]);
 
     return Rank;
