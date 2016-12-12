@@ -12,8 +12,8 @@ export default class Rank {
         return instance;
     }
 
-    addXp(amount) {
-        this.xp += amount;
+    addXp(value) {
+        this.xp += value;
     }
 
     /***

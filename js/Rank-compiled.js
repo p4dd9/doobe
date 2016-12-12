@@ -16,6 +16,7 @@ var Rank = function () {
 
         this.xp = 0;
         this.level = 1;
+        this.time = new Date();
 
         if (!instance) {
             instance = this;
@@ -25,8 +26,8 @@ var Rank = function () {
 
     _createClass(Rank, [{
         key: "addXp",
-        value: function addXp(amount) {
-            this.xp += amount;
+        value: function addXp(value) {
+            this.xp += value;
         }
 
         /***
