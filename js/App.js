@@ -10,13 +10,13 @@ $(document).ready(function () {
     }
 });
 
-lists = document.getElementsByClassName('task');
-let g = 1;
+let lists = document.getElementsByClassName('task');
+let green = 1;
 for (let i = 0; i < lists.length; i++) {
 
-    lists[i].style.backgroundColor = 'rgba(0,90,100,' + g + ')';
+    lists[i].style.backgroundColor = 'rgba(0,90,100,' + green + ')';
 
-    g -= (1 / lists.length);
+    green -= (1 / lists.length);
 }
 
 let user = new User();
