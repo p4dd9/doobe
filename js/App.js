@@ -1,4 +1,6 @@
-import User from "./User";
+import User from './User'
+import Rank from './Rank'
+
 $(document).ready(function () {
 
     let $task = $('.task');
@@ -19,4 +21,6 @@ for (let i = 0; i < lists.length; i++) {
     green -= (1 / lists.length);
 }
 
-let user = new User();
+let myuser = new User();
+let rank = new Rank();
+let i = 2;
