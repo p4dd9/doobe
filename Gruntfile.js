@@ -83,20 +83,11 @@ module.exports = function (grunt) {
                     'css/main.css': 'sass/main.scss'
                 }
             }
-
-            // files: [{
-            //     expand: true,
-            //     cwd: 'styles',
-            //     src: ['./sass/*.scss'],
-            //     dest: '../css',
-            //     ext: '.css'
-            // }]
         },
 
         watch: {
             html: {
                 files: ['./*.html'],
-                // tasks: ['copy:dist'],
                 options: {
                     livereload: true
                 }
@@ -110,7 +101,7 @@ module.exports = function (grunt) {
             },
             scripts: {
                 files: ['./js/*.js'],
-                tasks: ['browserify:dist'],
+                tasks: ['browserify:watch'],
                 options: {
                     livereload: true
                 }

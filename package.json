@@ -23,18 +23,19 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "jquery": "^3.1.1",
     "jquery-mobile": "^1.4.1",
     "load-grunt-tasks": "^3.3.0",
     "mocha": "^3.2.0",
+    "page": "^1.7.1",
     "serve-static": "^1.11.1",
     "should": "^11.1.1",
     "time-grunt": "^1.2.1",
     "uglifyify": "^3.0.4"
   },
   "dependencies": {
-    "grunt-contrib-sass": "^1.0.0",
     "pouchdb-browser": "^6.0.7"
   }
 }

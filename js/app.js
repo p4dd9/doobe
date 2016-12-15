@@ -1,6 +1,7 @@
 import User from './User'
 import Rank from './Rank'
 import $ from 'jquery'
+import page from 'page'
 
 $(document).ready(function () {
 
@@ -25,3 +26,31 @@ for (let i = 0; i < lists.length; i++) {
 let myuser = new User();
 let rank = new Rank();
 let i = 2;
+
+page('/', index)
+
+function index() {
+
+}
+
+page('/menu', menu)
+page('/task/:task', task)
+page('/lectures', lectures)
+page('*', notFound)
+page();
+
+function notFound() {
+    console.log('not!');
+}
+
+function task(task) {
+    console.log(task.params.task);
+}
+
+function lectures() {
+
+}
+
+function menu() {
+    
+}
