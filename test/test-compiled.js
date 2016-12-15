@@ -1,10 +1,10 @@
 'use strict';
 
-var _Task = require('../js/Task');
+var _Task = require('./Task');
 
 var _Task2 = _interopRequireDefault(_Task);
 
-var _Rank = require('../js/Rank');
+var _Rank = require('./Rank');
 
 var _Rank2 = _interopRequireDefault(_Rank);
 

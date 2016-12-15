@@ -1,5 +1,6 @@
 import User from './User'
 import Rank from './Rank'
+import $ from 'jquery'
 
 $(document).ready(function () {
 
