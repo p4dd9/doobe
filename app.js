@@ -15,6 +15,7 @@ var Rank = function () {
     function Rank() {
         _classCallCheck(this, Rank);
 
+        this._id = rank;
         this.xp = 0;
         this.level = 1;
         this.time = new Date();
@@ -43,6 +44,71 @@ var Rank = function () {
 exports.default = Rank;
 
 },{}],2:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Task = function () {
+    function Task() {
+        var due = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Date.now();
+        var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "taskText";
+        var workload = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;
+
+        _classCallCheck(this, Task);
+
+        this._id = Task.generateID();
+        this.created = Date.now();
+        this.due = due;
+        this.text = text;
+        this.workload = workload; // fibonacci 1, 2, 3, 5, 8, 13
+    }
+
+    _createClass(Task, [{
+        key: "getTimeSpan",
+        value: function getTimeSpan() {
+            var done = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.due;
+
+            return done - this.created;
+        }
+    }, {
+        key: "calcXpGain",
+
+
+        /***
+         * calculates the amout of xp depending on the amount of workload
+         * and when the task has been finish (the earlier, the better)
+         * @returns {number}
+         */
+        value: function calcXpGain() {
+            var elapsedTime = this.getTimeSpan(Date.now());
+            var originalTimeSpan = this.getTimeSpan();
+            var timeBonus = originalTimeSpan / elapsedTime;
+
+            return timeBonus * this.workload; // possible: add random factor
+        }
+    }], [{
+        key: "generateID",
+        value: function generateID() {
+            /*let numPattern = /[0-9]/g;
+            return parseInt((numPattern.exec(new Date().toISOString())), 10);*/
+
+            return Date.now().toString();
+        }
+    }]);
+
+    return Task;
+}();
+
+exports.default = Task;
+;
+
+},{}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -102,7 +168,7 @@ var User = function () {
 
 exports.default = User;
 
-},{"./Rank":1,"pouchdb-browser":13}],3:[function(require,module,exports){
+},{"./Rank":1,"pouchdb-browser":15}],4:[function(require,module,exports){
 'use strict';
 
 var _User = require('./User');
@@ -113,6 +179,10 @@ var _Rank = require('./Rank');
 
 var _Rank2 = _interopRequireDefault(_Rank);
 
+var _Task = require('./Task');
+
+var _Task2 = _interopRequireDefault(_Task);
+
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -120,6 +190,10 @@ var _jquery2 = _interopRequireDefault(_jquery);
 var _page = require('page');
 
 var _page2 = _interopRequireDefault(_page);
+
+var _index = require('./index');
+
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -132,29 +206,33 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     function destroyTarget() {
         this.remove();
     }
+
+    (0, _jquery2.default)('.control-bar__bar-holder').on('click', function () {
+        var t = new _Task2.default();
+        t.taskText = 'New task';
+        myuser.addTask(t);
+    });
 });
 
 var lists = document.getElementsByClassName('task');
-var green = 1;
+var alpha = 1;
 for (var _i = 0; _i < lists.length; _i++) {
 
-    lists[_i].style.backgroundColor = 'rgba(0,90,100,' + green + ')';
+    lists[_i].style.backgroundColor = 'rgba(0,90,100,' + alpha + ')';
 
-    green -= 1 / lists.length;
+    alpha -= 1 / lists.length;
 }
 
 var myuser = new _User2.default();
 var rank = new _Rank2.default();
 var i = 2;
 
-(0, _page2.default)('/', index);
-
-function index() {}
+(0, _page2.default)('/', _index2.default);
+(0, _page2.default)('*', _index2.default);
 
 (0, _page2.default)('/menu', menu);
 (0, _page2.default)('/task/:task', task);
 (0, _page2.default)('/lectures', lectures);
-(0, _page2.default)('*', notFound);
 (0, _page2.default)();
 
 function notFound() {
@@ -169,7 +247,35 @@ function lectures() {}
 
 function menu() {}
 
-},{"./Rank":1,"./User":2,"jquery":8,"page":10}],4:[function(require,module,exports){
+},{"./Rank":1,"./Task":2,"./User":3,"./index":5,"jquery":10,"page":12}],5:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = index;
+
+var _pouchdbBrowser = require('pouchdb-browser');
+
+var _pouchdbBrowser2 = _interopRequireDefault(_pouchdbBrowser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var database = new _pouchdbBrowser2.default('doobe');
+
+function index() {
+    console.log('index');
+
+    database.changes({
+        since: 'now',
+        live: true,
+        include_docs: true
+    }).on('change', function () {
+        console.log('Change');
+    });
+}
+
+},{"pouchdb-browser":15}],6:[function(require,module,exports){
 'use strict';
 
 module.exports = argsArray;
@@ -189,7 +295,7 @@ function argsArray(fun) {
     }
   };
 }
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -493,7 +599,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function (global){
 'use strict';
 var Mutation = global.MutationObserver || global.WebKitMutationObserver;
@@ -566,7 +672,7 @@ function immediate(task) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -591,7 +697,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.1.1
  * https://jquery.com/
@@ -10813,7 +10919,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 var immediate = require('immediate');
 
@@ -11068,7 +11174,7 @@ function race(iterable) {
   }
 }
 
-},{"immediate":6}],10:[function(require,module,exports){
+},{"immediate":8}],12:[function(require,module,exports){
 (function (process){
   /* globals require, module */
 
@@ -11694,7 +11800,7 @@ function race(iterable) {
   page.sameOrigin = sameOrigin;
 
 }).call(this,require('_process'))
-},{"_process":17,"path-to-regexp":11}],11:[function(require,module,exports){
+},{"_process":19,"path-to-regexp":13}],13:[function(require,module,exports){
 var isarray = require('isarray')
 
 /**
@@ -12086,12 +12192,12 @@ function pathToRegexp (path, keys, options) {
   return stringToRegexp(path, keys, options)
 }
 
-},{"isarray":12}],12:[function(require,module,exports){
+},{"isarray":14}],14:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -23189,7 +23295,7 @@ PouchDB.plugin(IDBPouch)
 
 module.exports = PouchDB;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"argsarray":4,"debug":14,"events":5,"immediate":6,"inherits":7,"lie":9,"scope-eval":18,"spark-md5":19,"vuvuzela":20}],14:[function(require,module,exports){
+},{"argsarray":6,"debug":16,"events":7,"immediate":8,"inherits":9,"lie":11,"scope-eval":20,"spark-md5":21,"vuvuzela":22}],16:[function(require,module,exports){
 (function (process){
 
 /**
@@ -23368,7 +23474,7 @@ function localstorage(){
 }
 
 }).call(this,require('_process'))
-},{"./debug":15,"_process":17}],15:[function(require,module,exports){
+},{"./debug":17,"_process":19}],17:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -23570,7 +23676,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":16}],16:[function(require,module,exports){
+},{"ms":18}],18:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -23721,7 +23827,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's'
 }
 
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -23903,7 +24009,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 // Generated by CoffeeScript 1.9.2
 (function() {
   var hasProp = {}.hasOwnProperty,
@@ -23927,7 +24033,7 @@ process.umask = function() { return 0; };
 
 }).call(this);
 
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 (function (factory) {
     if (typeof exports === 'object') {
         // Node/CommonJS
@@ -24680,7 +24786,7 @@ process.umask = function() { return 0; };
     return SparkMD5;
 }));
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24855,4 +24961,4 @@ exports.parse = function (str) {
   }
 };
 
-},{}]},{},[3]);
+},{}]},{},[4]);

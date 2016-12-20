@@ -1,7 +1,9 @@
 import User from './User'
 import Rank from './Rank'
+import Task from './Task'
 import $ from 'jquery'
 import page from 'page'
+import index from './index'
 
 $(document).ready(function () {
 
@@ -12,15 +14,21 @@ $(document).ready(function () {
     function destroyTarget() {
         this.remove();
     }
+
+    $('.control-bar__bar-holder').on('click', () => {
+        let t = new Task();
+        t.taskText = 'New task';
+        myuser.addTask(t);
+    });
 });
 
 let lists = document.getElementsByClassName('task');
-let green = 1;
+let alpha = 1;
 for (let i = 0; i < lists.length; i++) {
 
-    lists[i].style.backgroundColor = 'rgba(0,90,100,' + green + ')';
+    lists[i].style.backgroundColor = 'rgba(0,90,100,' + alpha + ')';
 
-    green -= (1 / lists.length);
+    alpha -= (1 / lists.length);
 }
 
 let myuser = new User();
@@ -28,15 +36,11 @@ let rank = new Rank();
 let i = 2;
 
 page('/', index)
-
-function index() {
-
-}
+page('*', index)
 
 page('/menu', menu)
 page('/task/:task', task)
 page('/lectures', lectures)
-page('*', notFound)
 page();
 
 function notFound() {
@@ -52,5 +56,5 @@ function lectures() {
 }
 
 function menu() {
-    
+
 }

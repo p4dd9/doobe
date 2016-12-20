@@ -1,21 +1,21 @@
 export default class Task {
-    constructor(dueDate = Date.now(), taskText = "taskText", workload = 100) {
-        this._id = this.generateID();
-        this.createdDate = Date.now();
-        this.dueDate = dueDate;
-        this.taskText = taskText;
+    constructor(due = Date.now(), text = "taskText", workload = 100) {
+        this._id = Task.generateID();
+        this.created = Date.now();
+        this.due = due;
+        this.text = text;
         this.workload = workload; // fibonacci 1, 2, 3, 5, 8, 13
     }
 
-    getTimeSpan(dueDate = this.dueDate) {
-        return dueDate - this.createdDate;
+    getTimeSpan(done = this.due) {
+        return done - this.created;
     }
 
     static generateID() {
         /*let numPattern = /[0-9]/g;
         return parseInt((numPattern.exec(new Date().toISOString())), 10);*/
 
-        return Date.now();
+        return Date.now().toString();
     }
 
     /***

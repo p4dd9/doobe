@@ -2,6 +2,7 @@ let instance = null;
 
 export default class Rank {
     constructor() {
+        this._id = rank;
         this.xp = 0;
         this.level = 1;
         this.time = new Date();
