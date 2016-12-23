@@ -1,39 +1,15 @@
-import User from './User'
+import User from './User' // moved to Ui.js
 import Rank from './Rank'
-import Task from './Task'
-import $ from 'jquery'
 import page from 'page'
 import index from './index'
+import { initUi } from './Ui.js'
 
-$(document).ready(function () {
+//console.log(initUi());
 
-    let $task = $('.task');
-
-    $task.on('swiperight', destroyTarget);
-
-    function destroyTarget() {
-        this.remove();
-    }
-
-    $('.control-bar__bar-holder').on('click', () => {
-        let t = new Task();
-        t.taskText = 'New task';
-        myuser.addTask(t);
-    });
-});
-
-let lists = document.getElementsByClassName('task');
-let alpha = 1;
-for (let i = 0; i < lists.length; i++) {
-
-    lists[i].style.backgroundColor = 'rgba(0,90,100,' + alpha + ')';
-
-    alpha -= (1 / lists.length);
-}
-
-let myuser = new User();
-let rank = new Rank();
+let rank = new Rank("0123123123"); // example ID
 let i = 2;
+
+initUi(); // reads current User and adds style
 
 page('/', index)
 page('*', index)

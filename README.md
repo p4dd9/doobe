@@ -16,7 +16,7 @@ Jeder trägt Verantwortung für den Erfolg der Web Applikation.
 Wir schaffen das. ~Bob d.B.  
 
 ## Programmiersprachen + Tools
-HTML5, CSS3, JS (z.b. mit WebStorm, PHPStorm)  
+HTML5, CSS3, JS (z.b. mit WebStorm, PHPStorm)
 CSS Präprozessor: SASS  
 
 ## Links
@@ -27,7 +27,6 @@ CSS Präprozessor: SASS
 
 [Markdown Language Basics](https://help.twitch.tv/customer/portal/articles/839490-markdown-basics)  
 [SASS Lang.](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)  
-[Skeleton](http://getskeleton.com/)  
 [HTML Validator](https://validator.w3.org/)
 [Semantic UI](http://semantic-ui.com/)  
 [Bootstrap](http://getbootstrap.com/)  
@@ -43,4 +42,4 @@ CSS Präprozessor: SASS
 
 **Authors**     :  Johannes Obermair, Patrick Obermueller, Valters Pukitis
 
-**Code**        :  HTML5, SASS/CSS, JS
+**Code**        :  HTML5, SASS/CSS, JS + ES6

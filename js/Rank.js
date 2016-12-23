@@ -1,7 +1,7 @@
-let instance = null;
+let instance = null; // singleton pattern
 
 export default class Rank {
-    constructor() {
+    constructor(rank) {
         this._id = rank;
         this.xp = 0;
         this.level = 1;
