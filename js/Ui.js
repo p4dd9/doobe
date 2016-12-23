@@ -6,14 +6,21 @@ export function initUi() {
     let myuser = new User();
     let $task = $('.task');
 
-    let s2 = Swiped.init({
+    let onSwipe = Swiped.init({
         query: '.doobe-wrapper__items > .task',
         list: true,
         left: 200,
-        right: 200
+        right: 200,
+        onOpen: function () {
+            applyColorToTasks();
+            console.log("Open");
+        },
+        onClose: function () {
+            applyColorToTasks();
+        }
     });
 
-    $task.on('swiperight', destroyTarget);
+    //$task.on('swiperight', destroyTarget);
 
     function destroyTarget() {
         this.remove();
@@ -25,13 +32,16 @@ export function initUi() {
         myuser.addTask(t);
     });
 
-    let lists = document.getElementsByClassName('task');
-    let alpha = 1;
+    let applyColorToTasks = function () {
+        let alpha = 1;
 
-    for (let i = 0; i < lists.length; i++) {
+        for (let i = 0; i < $task.length; i++) {
 
-        lists[i].style.backgroundColor = 'rgba(0,90,100,' + alpha + ')';
+            $task[i].style.backgroundColor = 'rgba(0,90,100,' + alpha + ')';
 
-        alpha -= (1 / lists.length);
-    }
+            alpha -= (1 / $task.length);
+        }
+    };
+
+    applyColorToTasks();
 }
