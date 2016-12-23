@@ -32,6 +32,7 @@
     "page": "^1.7.1",
     "serve-static": "^1.11.1",
     "should": "^11.1.1",
+    "swiped": "^0.1.4",
     "time-grunt": "^1.2.1",
     "uglifyify": "^3.0.4"
   },

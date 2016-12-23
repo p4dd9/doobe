@@ -6,6 +6,13 @@ export function initUi() {
     let myuser = new User();
     let $task = $('.task');
 
+    let s2 = Swiped.init({
+        query: '.doobe-wrapper__items > .task',
+        list: true,
+        left: 200,
+        right: 200
+    });
+
     $task.on('swiperight', destroyTarget);
 
     function destroyTarget() {

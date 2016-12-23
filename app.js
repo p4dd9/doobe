@@ -134,6 +134,13 @@ function initUi() {
     var myuser = new _User2.default();
     var $task = (0, _jquery2.default)('.task');
 
+    var s2 = Swiped.init({
+        query: '.doobe-wrapper__items > .task',
+        list: true,
+        left: 200,
+        right: 200
+    });
+
     $task.on('swiperight', destroyTarget);
 
     function destroyTarget() {
