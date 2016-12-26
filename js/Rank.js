@@ -1,16 +1,9 @@
-let instance = null; // singleton pattern
-
 export default class Rank {
-    constructor(rank) {
-        this._id = rank;
-        this.xp = 0;
-        this.level = 1;
-        this.time = new Date();
-
-        if (!instance) {
-            instance = this;
-        }
-        return instance;
+    constructor({xp = 0, level = 1, time = new Date()} = {}) {
+        this._id = 'rank';
+        this.xp = xp;
+        this.level = level;
+        this.time = time;
     }
 
     addXp(value) {

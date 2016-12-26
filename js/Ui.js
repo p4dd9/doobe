@@ -3,7 +3,6 @@ import Task from "./Task"
 import User from './User'
 
 export function initUi() {
-    let myuser = new User();
     let $task = $('.task');
 
     let onSwipe = Swiped.init({
@@ -27,20 +26,23 @@ export function initUi() {
     }
 
     $('.control-bar__bar-holder').on('click', () => {
-        let t = new Task();
-        t.taskText = 'New task';
-        myuser.addTask(t);
+        // User.addXp(20).then(response => {
+        //     console.log(response);
+        // }).catch(error => {
+        //     console.log(error);
+        // });
+
+        User.addTask(new Task());
     });
 
     let applyColorToTasks = function () {
         let alpha = 1;
 
-        for (let i = 0; i < $task.length; i++) {
+        $task.each(function () {
 
-            $task[i].style.backgroundColor = 'rgba(0,90,100,' + alpha + ')';
-
+            $(this).css('opacity', alpha);
             alpha -= (1 / $task.length);
-        }
+        });
     };
 
     applyColorToTasks();

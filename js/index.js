@@ -1,15 +1,34 @@
 import PouchDB from 'pouchdb-browser'
+import User from './User'
+import tasksTemplate from '../templates/tasks.hbs'
+import $ from 'jquery'
 
 let database = new PouchDB('doobe');
 
 export default function index() {
-    console.log('index');
-
     database.changes({
         since: 'now',
-        live: true,
-        include_docs: true
+        live: true
     }).on('change', () => {
-        console.log('Change');
+        displayTasks();
     });
 }
+
+function displayTasks() {
+    console.log(User.tasks);
+    $('.doobe-wrapper__items').html(tasksTemplate({tasks: User.tasks}));
+    // database.allDocs({
+    //     include_docs: true
+    // }).then(function (result) {
+    //     console.log(result)
+    //     // handle result
+    // }).catch(function (err) {
+    //     console.log(err);
+    // });
+
+
+}
+
+$(window).ready(() => {
+    displayTasks();
+});

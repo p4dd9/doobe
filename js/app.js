@@ -2,12 +2,7 @@ import User from './User' // moved to Ui.js
 import Rank from './Rank'
 import page from 'page'
 import index from './index'
-import { initUi } from './Ui.js'
-
-//console.log(initUi());
-
-let rank = new Rank("0123123123"); // example ID
-let i = 2;
+import {initUi} from './Ui.js'
 
 initUi(); // reads current User and adds style
 

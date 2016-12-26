@@ -17,7 +17,7 @@ module.exports = function (grunt) {
                     './app.js': ['./js/app.js']
                 },
                 options: {
-                    transform: ['babelify']
+                    transform: ['hbsfy', 'babelify']
                 }
             },
             dist: {
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
                     './app.js': ['./js/app.js']
                 },
                 options: {
-                    transform: ['babelify', 'uglifyify']
+                    transform: ['hbsfy', 'babelify', 'uglifyify']
                 }
             }
         },
@@ -101,6 +101,13 @@ module.exports = function (grunt) {
             },
             scripts: {
                 files: ['./js/*.js'],
+                tasks: ['browserify:watch'],
+                options: {
+                    livereload: true
+                }
+            },
+            templates: {
+                files: ['./templates/*.hbs'],
                 tasks: ['browserify:watch'],
                 options: {
                     livereload: true

@@ -51,7 +51,7 @@ h2 {
   display: block;
   padding: 20px;
   border-bottom: 2px solid white;
-  background-color: lighten($color-item, 50%);
+  background-color: $color-item;
   height: 90px;
 }
 

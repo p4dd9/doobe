@@ -1,32 +1,80 @@
 import Rank from "./Rank";
 import PouchDB from 'pouchdb-browser'
+import Task from './Task';
 
-let database = new PouchDB('doobe');
+const DB_NAME = 'doobe';
+const RANK = 'rank';
 
-export default class User {
+// let database = new PouchDB(DB_NAME);
+
+class User {
+
     constructor() {
-        // TODO load rank from DB
-        this.rank = new Rank();
+        this.database = new PouchDB(DB_NAME);
 
-        database.allDocs({include_docs: true}).then(function (result) {
-            console.log(result)
-        }).catch(function (err) {
-            console.log(err);
+        // TODO load rank from DB
+        this.database.get(RANK).then(result => {
+            this.rank = new Rank(result);
+            console.log(this.rank);
+        }).catch(err => {
+            console.log('Failed to fetch rank: ' + err.toString());
+            const notFound = 404;
+
+            if (notFound == err.status) {
+                this.rank = new Rank();
+                this.database.put(this.rank);
+            }
         });
 
-        this.tasks = [];
+        this.database.query(doc => {
+            if ('task' == doc.type) {
+                emit(doc)
+            }
+        }, {include_docs: true}).then(result => {
+            this.tasks = [];
+
+            result.rows.forEach(row => {
+                this.tasks.push(new Task(row.doc));
+            });
+
+            // for (let i = 0; i < result.rows.length; i++) {
+            //     this.tasks.push(new Task(result.rows[i].doc));
+            // }
+
+            console.log(this.tasks)
+        }).catch(error => {
+            console.log(error)
+        });
 
     }
 
     addTask(task) {
         this.tasks.push(task);
 
-        database.put(task);
+        this.database.put(task);
     }
 
     removeTask(task) {
-        this.tasks.remove(task);
+        this.database.remove(task).then(result => {
+            console.log(result);
 
-        database.remove(task);
+            this.tasks.remove(task);
+        }).catch(error => {
+            console.log(error)
+        });
+    }
+
+    addXp(value) {
+        this.rank.addXp(value);
+
+        return this.database.get(RANK).then(doc => {
+            return this.database.put({
+                _id: RANK,
+                _rev: doc._rev,
+                xp: this.rank.xp
+            });
+        })
     }
 }
+
+export default new User();
