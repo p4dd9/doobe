@@ -1,6 +1,6 @@
-import Rank from "./Rank";
-import Task from "./Task";
-import database from "./database";
+import database from './database';
+import Rank from './Rank';
+import Task from './Task';
 
 const RANK = 'rank';
 
