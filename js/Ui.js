@@ -26,7 +26,7 @@ export function initUi() {
     }
 
     $('.control-bar__bar-holder').on('click', () => {
-        // User.addXp(20).then(response => {
+        // user.addXp(20).then(response => {
         //     console.log(response);
         // }).catch(error => {
         //     console.log(error);

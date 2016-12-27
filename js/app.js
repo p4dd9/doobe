@@ -1,10 +1,11 @@
-import User from './User' // moved to Ui.js
+import user from './User'
 import Rank from './Rank'
 import page from 'page'
 import index from './index'
 import {initUi} from './Ui.js'
 
-initUi(); // reads current User and adds style
+
+initUi(); // reads current user and adds style
 
 page('/', index)
 page('*', index)

@@ -1,19 +1,13 @@
 import Rank from "./Rank";
-import PouchDB from 'pouchdb-browser'
-import Task from './Task';
+import Task from "./Task";
+import database from "./database";
 
-const DB_NAME = 'doobe';
 const RANK = 'rank';
-
-// let database = new PouchDB(DB_NAME);
 
 class User {
 
     constructor() {
-        this.database = new PouchDB(DB_NAME);
-
-        // TODO load rank from DB
-        this.database.get(RANK).then(result => {
+        database.get(RANK).then(result => {
             this.rank = new Rank(result);
             console.log(this.rank);
         }).catch(err => {
@@ -22,11 +16,11 @@ class User {
 
             if (notFound == err.status) {
                 this.rank = new Rank();
-                this.database.put(this.rank);
+                database.put(this.rank);
             }
         });
 
-        this.database.query(doc => {
+        database.query(doc => {
             if ('task' == doc.type) {
                 emit(doc)
             }
@@ -45,17 +39,16 @@ class User {
         }).catch(error => {
             console.log(error)
         });
-
     }
 
     addTask(task) {
         this.tasks.push(task);
 
-        this.database.put(task);
+        database.put(task);
     }
 
     removeTask(task) {
-        this.database.remove(task).then(result => {
+        database.remove(task).then(result => {
             console.log(result);
 
             this.tasks.remove(task);
@@ -67,8 +60,8 @@ class User {
     addXp(value) {
         this.rank.addXp(value);
 
-        return this.database.get(RANK).then(doc => {
-            return this.database.put({
+        return database.get(RANK).then(doc => {
+            return database.put({
                 _id: RANK,
                 _rev: doc._rev,
                 xp: this.rank.xp

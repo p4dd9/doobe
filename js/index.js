@@ -1,9 +1,8 @@
-import PouchDB from 'pouchdb-browser'
-import User from './User'
+import user from './User'
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
 
-let database = new PouchDB('doobe');
+import database from './database'
 
 export default function index() {
     database.changes({
@@ -12,11 +11,14 @@ export default function index() {
     }).on('change', () => {
         displayTasks();
     });
+
+//     $(window).ready(() => {
+//          displayTasks();
+//     });
 }
 
 function displayTasks() {
-    console.log(User.tasks);
-    $('.doobe-wrapper__items').html(tasksTemplate({tasks: User.tasks}));
+    $('.doobe-wrapper__items').html(tasksTemplate({tasks: user.tasks}));
     // database.allDocs({
     //     include_docs: true
     // }).then(function (result) {
@@ -28,7 +30,3 @@ function displayTasks() {
 
 
 }
-
-$(window).ready(() => {
-    displayTasks();
-});
