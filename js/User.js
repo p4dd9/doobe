@@ -7,6 +7,8 @@ const RANK = 'rank';
 class User {
 
     constructor() {
+        this.listeners = new Map();
+
         database.get(RANK).then(result => {
             this.rank = new Rank(result);
             console.log(this.rank);
@@ -35,7 +37,9 @@ class User {
             //     this.tasks.push(new Task(result.rows[i].doc));
             // }
 
-            console.log(this.tasks)
+            // console.log(this.tasks)
+
+            this.fireEvent('load-tasks');
         }).catch(error => {
             console.log(error)
         });
@@ -45,6 +49,8 @@ class User {
         this.tasks.push(task);
 
         database.put(task);
+
+        this.fireEvent('load-tasks');
     }
 
     removeTask(task) {
@@ -52,6 +58,8 @@ class User {
             console.log(result);
 
             this.tasks.remove(task);
+
+            this.fireEvent('load-tasks');
         }).catch(error => {
             console.log(error)
         });
@@ -67,6 +75,19 @@ class User {
                 xp: this.rank.xp
             });
         })
+    }
+
+    addListener(event, fn) {
+
+        if (this.listeners[event] === undefined) {
+            this.listeners[event] = []
+        }
+
+        this.listeners[event].push(fn);
+    }
+
+    fireEvent(event) {
+        this.listeners[event].forEach(fn => fn());
     }
 }
 

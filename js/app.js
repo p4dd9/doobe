@@ -2,7 +2,7 @@ import user from './User'
 import Rank from './Rank'
 import page from 'page'
 import index from './index'
-import {initUi} from './Ui.js'
+import {initUi} from './ui.js'
 
 
 initUi(); // reads current user and adds style

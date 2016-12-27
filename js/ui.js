@@ -3,8 +3,6 @@ import Task from "./Task"
 import User from './User'
 
 export function initUi() {
-    let $task = $('.task');
-
     let onSwipe = Swiped.init({
         query: '.doobe-wrapper__items > .task',
         list: true,
@@ -35,15 +33,16 @@ export function initUi() {
         User.addTask(new Task());
     });
 
-    let applyColorToTasks = function () {
-        let alpha = 1;
 
-        $task.each(function () {
+}
 
-            $(this).css('opacity', alpha);
-            alpha -= (1 / $task.length);
-        });
-    };
+export function colorTasks() {
+    let tasks = document.querySelectorAll('.task');
+    let alpha = 1;
+    let offset = 1.0 / tasks.length;
 
-    applyColorToTasks();
+    tasks.forEach(task => {
+        task.style.opacity = alpha;
+        alpha -= offset;
+    });
 }

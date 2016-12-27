@@ -1,16 +1,10 @@
 import user from './User'
 import tasksTemplate from '../templates/tasks.hbs'
-import $ from 'jquery'
 
-import database from './database'
+import {colorTasks} from './ui';
 
 export default function index() {
-    database.changes({
-        since: 'now',
-        live: true
-    }).on('change', () => {
-        displayTasks();
-    });
+    user.addListener('load-tasks', displayTasks);
 
 //     $(window).ready(() => {
 //          displayTasks();
@@ -18,7 +12,7 @@ export default function index() {
 }
 
 function displayTasks() {
-    $('.doobe-wrapper__items').html(tasksTemplate({tasks: user.tasks}));
+    document.querySelector('.doobe-wrapper__items').innerHTML = tasksTemplate({tasks: user.tasks});
     // database.allDocs({
     //     include_docs: true
     // }).then(function (result) {
@@ -28,5 +22,5 @@ function displayTasks() {
     //     console.log(err);
     // });
 
-
+    colorTasks();
 }
