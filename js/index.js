@@ -1,5 +1,6 @@
 import user from './User'
 import tasksTemplate from '../templates/tasks.hbs'
+import {initUi} from './ui.js'
 
 import {colorTasks} from './ui';
 
@@ -21,6 +22,8 @@ function displayTasks() {
     // }).catch(function (err) {
     //     console.log(err);
     // });
+
+    initUi();
 
     colorTasks();
 }
