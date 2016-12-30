@@ -15,12 +15,12 @@ export default class Rank {
             this.xp = 0;
         } else this.xp += value;
 
-        $('.current_progress').width(this.progressToPercentage() + '%');
+        $('.current_progress').width(this.xpToPercentage() + '%');
         this.maxProgress = this.getXpMax(); // recalculate maxProgress based on level
         $('.progress__information').html(this.xp + '/' + this.maxProgress);
     }
 
-    progressToPercentage() {
+    xpToPercentage() {
         return (this.xp / this.maxProgress) * 100;
     }
 

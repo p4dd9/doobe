@@ -24,6 +24,19 @@ describe('task-test', () => {
     it('test Rank-Singleton on xp', () => {
         return rank1.xp === rank2.xp
     });
+});
 
-    /* TEST PROGRESS-BAR */
+describe('Test Progress-Indicator', () =>{
+    let myRank = new Rank();
+    myRank.xp = 0;
+    myRank.level = 0; // maxProgress = 100
+    myRank.addXp(30); // +30xp => 30% progress
+
+    it('test Progress-Bar-MaxProgress', () => {
+        return myRank.maxProgress = 100;
+    });
+
+    it('test Progress-Bar-Percentage', () => {
+        return myRank.xpToPercentage() === 30;
+    });
 });

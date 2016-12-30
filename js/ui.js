@@ -25,9 +25,6 @@ export function initUi() {
     }
 
     let myRank = new Rank();
-    console.log(myRank.xp);
-    console.log(myRank.level);
-    console.log(myRank.maxProgress);
 
     myRank.addXp(2);
     myRank.addXp(97);
@@ -37,6 +34,7 @@ export function initUi() {
 
     console.log("XP:" + myRank.xp);
     console.log("Level:" + myRank.level);
+    myRank.addXp(175);
 
     $('.control-bar__bar-holder').on('click', () => {
         // user.addXp(20).then(response => {
