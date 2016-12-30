@@ -24,4 +24,6 @@ describe('task-test', () => {
     it('test Rank-Singleton on xp', () => {
         return rank1.xp === rank2.xp
     });
+
+    /* TEST PROGRESS-BAR */
 });

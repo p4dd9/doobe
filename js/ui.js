@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import Task from "./Task"
+import Rank from "./Rank"
 import User from './User'
 
 export function initUi() {
@@ -23,6 +24,20 @@ export function initUi() {
         this.remove();
     }
 
+    let myRank = new Rank();
+    console.log(myRank.xp);
+    console.log(myRank.level);
+    console.log(myRank.maxProgress);
+
+    myRank.addXp(2);
+    myRank.addXp(97);
+    console.log("XP:" + myRank.xp);
+    console.log("Level:" + myRank.level);
+    myRank.addXp(2);
+
+    console.log("XP:" + myRank.xp);
+    console.log("Level:" + myRank.level);
+
     $('.control-bar__bar-holder').on('click', () => {
         // user.addXp(20).then(response => {
         //     console.log(response);
@@ -32,8 +47,6 @@ export function initUi() {
 
         User.addTask(new Task());
     });
-
-
 }
 
 export function colorTasks() {

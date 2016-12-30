@@ -4,7 +4,6 @@ import page from 'page'
 import index from './index'
 import {initUi} from './ui.js'
 
-
 initUi(); // reads current user and adds style
 
 page('/', index)
