@@ -25,16 +25,15 @@ export function initUi() {
     }
 
     let myRank = new Rank();
-
     myRank.addXp(2);
     myRank.addXp(97);
     console.log("XP:" + myRank.xp);
     console.log("Level:" + myRank.level);
     myRank.addXp(2);
-
     console.log("XP:" + myRank.xp);
     console.log("Level:" + myRank.level);
     myRank.addXp(175);
+    console.log("XP:" + myRank.xp);
 
     $('.control-bar__bar-holder').on('click', () => {
         // user.addXp(20).then(response => {

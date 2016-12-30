@@ -48,8 +48,4 @@ export default class Rank {
                 return 8900;
         }
     }
-
-    /***
-     * http://onlyagame.typepad.com/only_a_game/2006/08/mathematics_of_.html
-     */
 }

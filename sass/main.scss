@@ -124,11 +124,11 @@ h2 {
 .progress__progress-bar {
   background-color: $color-white; /*???*/
   width: 175px;
-  height:25px;
+  height: 25px;
 }
 
 .current_progress {
-  height:25px;
+  height: 25px;
   background-color: #03a9f4;
   width: 0;
   transition: width 1s;
