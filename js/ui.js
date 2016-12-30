@@ -2,59 +2,69 @@ import $ from 'jquery'
 import Task from "./Task"
 import Rank from "./Rank"
 import User from './User'
-//import Hammer from '../node_modules/hammerjs/hammer'
 
 export function initUi() {
     /*let onSwipe = Swiped.init({
-        query: '.task',
-        list: true,
-        left: 200,
-        right: 200,
-        onOpen: function () {
-            console.log("Open");
-            colorTasks();
-        },
-        onClose: function () {
-            colorTasks();
-        }
-    });*/
+     query: '.task',
+     list: true,
+     left: 200,
+     right: 200,
+     onOpen: function () {
+     console.log("Open");
+     colorTasks();
+     },
+     onClose: function () {
+     colorTasks();
+     }
+     });*/
 
-    /*let myBody = document.getElementsByTagName('body')[0];
-    let theHammer = new Hammer(myBody);
-    theHammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+    let domTasks = document.getElementsByClassName('task');
 
-    theHammer.on('swipeleft swiperight swipeup swipedown', function (event) {
-        event.preventDefault();
-        alert("did u just swipe down?" + event.type);
-    })*/
-
-    let theTask = document.getElementsByClassName('task');
-
-    for(let i = 0; i < theTask.length; i++) {
-        let theTaskHammer = new Hammer(theTask[i]);
+    for (let task of domTasks) {
+        let theTaskHammer = new Hammer(task);
 
         theTaskHammer.get('swipe').set({
-            direction: Hammer.ALL});
+            direction: Hammer.ALL
+        });
 
         theTaskHammer.get('pan').set({
-            threshold: 100});
+            threshold: 100
+        });
 
         theTaskHammer.on('panend', function (event) {
-            switch(event.direction){
+            switch (event.direction) {
                 case Hammer.DIRECTION_RIGHT:
-                    alert("RIGHT - FINISH");
+                    finishTask(task);
                     break;
                 case Hammer.DIRECTION_LEFT:
-                    alert("LEFT - DELETE");
+                    deleteTask(task);
                     break;
             }
         });
     }
 
-    //$task.on('swiperight', destroyTarget);
+    function deleteTask(task) {
+        let mytask = $(task);
+        mytask.fadeOut(1000, function () {
+            for (let i = 0; i < User.tasks.length; i++) {
+                console.log("DB task id:" + User.tasks[i]._id);
+                console.log("Current DOM Task id:" + mytask.attr('id'));
 
-    function destroyTarget() {
-        this.remove();
+                if (User.tasks[i]._id === mytask.attr('id')) {
+                    User.removeTask(User.tasks[i]);
+                    mytask.remove();
+                    console.log("deleted task with id: " + User.tasks[i]._id)
+                    break;
+                }
+            }
+        });
+    }
+
+    function finishTask() {
+        let mytask = $(task);
+        mytask.fadeOut(1000, function () {
+            mytask.remove();
+        });
     }
 
     let myRank = new Rank();

@@ -1,9 +1,8 @@
 export default class Task {
     constructor({due = Date.now(), text = "text", workload = 100} = {}) {
-        this._id = Task.generateID();
+        this._id = this.generateID();
         this.type = 'task';
         this.created = Date.now();
-
         this.due = due;
         this.text = text;
         this.workload = workload; // fibonacci 1, 2, 3, 5, 8, 13
@@ -13,7 +12,7 @@ export default class Task {
         return done - this.created;
     }
 
-    static generateID() {
+    generateID() {
         /*let numPattern = /[0-9]/g;
          return parseInt((numPattern.exec(new Date().toISOString())), 10);*/
 
