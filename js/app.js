@@ -5,7 +5,6 @@ import page from 'page'
 import index from './index'
 import {initUi} from './ui.js'
 
-
 page('/', index)
 page('*', index)
 
