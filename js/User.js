@@ -72,7 +72,8 @@ class User {
             return database.put({
                 _id: RANK,
                 _rev: doc._rev,
-                xp: this.rank.xp
+                xp: this.rank.xp,
+                level: this.rank.level
             });
         })
     }
