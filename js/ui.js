@@ -5,16 +5,16 @@ import User from './User'
 
 export function initUi() {
     let onSwipe = Swiped.init({
-        query: '.doobe-wrapper__items > .task',
+        query: '.task',
         list: true,
         left: 200,
         right: 200,
         onOpen: function () {
-            applyColorToTasks();
             console.log("Open");
+            colorTasks();
         },
         onClose: function () {
-            applyColorToTasks();
+            colorTasks();
         }
     });
 

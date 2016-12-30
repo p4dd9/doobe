@@ -1,10 +1,10 @@
 import user from './User'
+import $ from 'jquery'
 import Rank from './Rank'
 import page from 'page'
 import index from './index'
 import {initUi} from './ui.js'
 
-initUi(); // reads current user and adds style
 
 page('/', index)
 page('*', index)
@@ -13,6 +13,8 @@ page('/menu', menu)
 page('/task/:task', task)
 page('/lectures', lectures)
 page();
+
+initUi(); // reads current user and adds style
 
 function notFound() {
     console.log('not!');
