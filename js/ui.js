@@ -10,11 +10,11 @@ export function initUi() {
         left: 200,
         right: 200,
         onOpen: function () {
-            applyColorToTasks();
+            colorTasks();
             console.log("Open");
         },
         onClose: function () {
-            applyColorToTasks();
+            colorTasks();
         }
     });
 
