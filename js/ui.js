@@ -68,15 +68,21 @@ export function initUi() {
     }
 
     let myRank = new Rank();
-    myRank.addXp(2);
-    myRank.addXp(97);
     console.log("XP:" + myRank.xp);
     console.log("Level:" + myRank.level);
     myRank.addXp(2);
+    myRank.addXp(98);
     console.log("XP:" + myRank.xp);
     console.log("Level:" + myRank.level);
-    myRank.addXp(175);
+    myRank.addXp(98);
     console.log("XP:" + myRank.xp);
+    console.log("Level:" + myRank.level);
+    myRank.addXp(350);
+    console.log("XP:" + myRank.xp);
+    console.log("Level:" + myRank.level);
+    myRank.addXp(650);
+    console.log("XP:" + myRank.xp);
+    console.log("Level:" + myRank.level);
 
     $('.control-bar__bar-holder').on('click', () => {
         // user.addXp(20).then(response => {

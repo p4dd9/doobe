@@ -6,7 +6,8 @@ export default class Rank {
         this.xp = xp;
         this.level = level;
         this.time = time;
-        this.maxProgress = this.getXpMax();
+        this.maxProgress = this.getLevelXpMax(level);
+        this.updateLevelXp();
     }
 
     addXp(value) {
@@ -14,9 +15,12 @@ export default class Rank {
             this.level += 1;
             this.xp = 0;
         } else this.xp += value;
+        this.updateLevelXp();
+    }
 
+    updateLevelXp() {
         $('.current_progress').width(this.xpToPercentage() + '%');
-        this.maxProgress = this.getXpMax(); // recalculate maxProgress based on level
+        this.maxProgress = this.getLevelXpMax(this.level); // recalculate maxProgress based on level
         $('.progress__information').html(this.xp + '/' + this.maxProgress);
     }
 
@@ -24,28 +28,10 @@ export default class Rank {
         return (this.xp / this.maxProgress) * 100;
     }
 
-    getXpMax() {
-        switch (this.level) {
-            case 1:
-                return 100;
-            case 2:
-                return 200;
-            case 3:
-                return 300;
-            case 4:
-                return 500;
-            case 5:
-                return 800;
-            case 6:
-                return 1300;
-            case 7:
-                return 2100;
-            case 8:
-                return 3400;
-            case 9:
-                return 5500;
-            case 10:
-                return 8900;
+    getLevelXpMax(level) {
+        if (level <= 1) return 100;
+        else {
+            return level * 100 + this.getLevelXpMax(level - 1);
         }
     }
 }
