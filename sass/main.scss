@@ -133,3 +133,18 @@ h2 {
   width: 0;
   transition: width 1s;
 }
+
+.level-holder {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  top: -40px;
+  right: 5px;
+  border-radius: 100%;
+  background-color: #005964;
+  text-align: center;
+}
+
+.level-content {
+  margin-top: 30.5%;
+}

@@ -22,6 +22,7 @@ export default class Rank {
         $('.current_progress').width(this.xpToPercentage() + '%');
         this.maxProgress = this.getLevelXpMax(this.level); // recalculate maxProgress based on level
         $('.progress__information').html(this.xp + '/' + this.maxProgress);
+        $('.level-content').html(this.level);
     }
 
     xpToPercentage() {
