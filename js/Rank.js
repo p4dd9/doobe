@@ -31,8 +31,7 @@ export default class Rank {
 
     getLevelXpMax(level) {
         if (level <= 1) return 100;
-        else {
-            return level * 100 + this.getLevelXpMax(level - 1);
-        }
+
+        return level * 100 + this.getLevelXpMax(level - 1);
     }
 }

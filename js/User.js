@@ -22,51 +22,77 @@ class User {
             }
         });
 
-        database.query(doc => {
-            if ('task' == doc.type) {
-                emit(doc)
-            }
-        }, {include_docs: true}).then(result => {
-            this.tasks = [];
 
-            result.rows.forEach(row => {
-                this.tasks.push(new Task(row.doc));
-            });
+    }
 
-            // for (let i = 0; i < result.rows.length; i++) {
-            //     this.tasks.push(new Task(result.rows[i].doc));
-            // }
+    getTasks() {
+        return new Promise((resolve, reject) => {
+            database.query(doc => {
+                if ('task' == doc.type) {
+                    emit(doc)
+                }
+            }, {include_docs: true}).then(result => {
+                let tasks = [];
 
-            // console.log(this.tasks)
+                result.rows.forEach(row => {
+                    tasks.push(new Task(row.doc));
+                });
 
-            this.fireEvent('load-tasks');
-        }).catch(error => {
-            console.log(error)
+                resolve(tasks);
+            }).catch(error => reject(error));
         });
     }
 
     addTask(task) {
-        this.tasks.push(task);
-
-        database.put(task);
-
-        this.fireEvent('load-tasks');
+        // Promise
+        return database.put(task);
     }
 
-    removeTask(task) {
-        database.remove(task).then(result => {
-            console.log(result);
-
-            this.tasks.remove(task);
-
-            this.fireEvent('load-tasks');
-        }).catch(error => {
-            console.log(error)
+    removeTask(id) {
+        return new Promise((resolve, reject) => {
+            // First get the task...
+            database.get(id).then(function (doc) {
+                // ...then remove the task
+                database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
+            }).catch(error => reject(error));
         });
+
+        /*database.remove(task).then(result => {
+         console.log(result);
+
+         this.tasks.remove(task);
+
+         this.fireEvent('load-tasks');
+         }).catch(error => {
+         console.log(error)
+         });*/
+    }
+
+    finishTask(id) {
+        return new Promise((resolve, reject) => {
+            // First get the task...
+            database.get(id).then(function (doc) {
+
+                // ...then remove the task
+                database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
+            }).catch(error => reject(error));
+        });
+    }
+
+    getTask(task_id) {
+        return database.get(task_id);
     }
 
     addXp(value) {
         this.rank.addXp(value);
+
+        return new Promise((resolve, reject) => {
+            // First get the task...
+            database.get(id).then(function (doc) {
+                // ...then remove the task
+                database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
+            }).catch(error => reject(error));
+        });
 
         return database.get(RANK).then(doc => {
             return database.put({

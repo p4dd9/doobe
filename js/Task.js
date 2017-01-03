@@ -1,8 +1,8 @@
 export default class Task {
-    constructor({due = Date.now(), text = "text", workload = 100} = {}) {
-        this._id = this.generateID();
+    constructor({_id = Date.now().toString(), created = Date.now(), due = Date.now(), text = "text", workload = 100} = {}) {
+        this._id = _id;
         this.type = 'task';
-        this.created = Date.now();
+        this.created = created;
         this.due = due;
         this.text = text;
         this.workload = workload; // fibonacci 1, 2, 3, 5, 8, 13
@@ -10,13 +10,6 @@ export default class Task {
 
     getTimeSpan(done = this.due) {
         return done - this.created;
-    }
-
-    generateID() {
-        /*let numPattern = /[0-9]/g;
-         return parseInt((numPattern.exec(new Date().toISOString())), 10);*/
-
-        return Date.now().toString();
     }
 
     /***
