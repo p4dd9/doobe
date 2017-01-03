@@ -71,8 +71,12 @@ class User {
     finishTask(id) {
         return new Promise((resolve, reject) => {
             // First get the task...
-            database.get(id).then(function (doc) {
+            database.get(id).then(doc => {
+                let task = new Task(doc);
 
+                console.log(task.calcXpGain());
+
+                this.addXp(task.calcXpGain());
                 // ...then remove the task
                 database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
             }).catch(error => reject(error));
@@ -87,21 +91,17 @@ class User {
         this.rank.addXp(value);
 
         return new Promise((resolve, reject) => {
-            // First get the task...
-            database.get(id).then(function (doc) {
-                // ...then remove the task
-                database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
+            // First get the rank...
+            database.get(RANK).then(doc => {
+                // ...then update the rank
+                database.put({
+                    _id: RANK,
+                    _rev: doc._rev,
+                    xp: this.rank.xp,
+                    level: this.rank.level
+                }).then(doc => resolve(doc)).catch(error => reject(error));
             }).catch(error => reject(error));
         });
-
-        return database.get(RANK).then(doc => {
-            return database.put({
-                _id: RANK,
-                _rev: doc._rev,
-                xp: this.rank.xp,
-                level: this.rank.level
-            });
-        })
     }
 
     addListener(event, fn) {

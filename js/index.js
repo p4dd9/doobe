@@ -6,14 +6,16 @@ import $ from 'jquery'
 import {colorTasks} from './ui';
 import Task from "./Task";
 
-let $tasks;
+let $tasksWrapper;
 
 export default function index() {
     // user.addListener('load-tasks', displayTasks);
-    $tasks = $('.doobe-wrapper__items');
+    $tasksWrapper = $('.doobe-wrapper__items');
 //     $(window).ready(() => {
 //          displayTasks();
 //     });
+
+
     $('.control-bar__bar-holder').on('click', () => {
         console.log('add task');
         // user.addXp(20).then(response => {
@@ -27,7 +29,7 @@ export default function index() {
         user.addTask(task).then(() => {
             let $task = $(taskTemplate({task: task}));
             $task.hide();
-            $task.appendTo($tasks);
+            $task.appendTo($tasksWrapper);
             $task.slideDown();
 
             createHammerForTaskNode($task[0]);
@@ -107,5 +109,6 @@ function finishTask(task) {
 
            colorTasks();
         });
+
     }).catch(error => console.log(error));
 }

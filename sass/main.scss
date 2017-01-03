@@ -148,3 +148,14 @@ h2 {
 .level-content {
   margin-top: 30.5%;
 }
+
+.add-wrapper {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background-color: $color-item;
+}

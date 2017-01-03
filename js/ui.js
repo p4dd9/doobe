@@ -4,37 +4,20 @@ import Rank from "./Rank"
 import User from './User'
 
 export function initUi() {
-    /*let onSwipe = Swiped.init({
-     query: '.task',
-     list: true,
-     left: 200,
-     right: 200,
-     onOpen: function () {
-     console.log("Open");
-     colorTasks();
-     },
-     onClose: function () {
-     colorTasks();
-     }
-     });*/
-
-    let domTasks = document.getElementsByClassName('task');
-
-    for (let task of domTasks) {
-
-    }
+    let hammer = new Hammer(document.querySelector('body'), { domEvents: true});
 
 
+    hammer.get('swipe').set({direction: Hammer.DIRECTION_VERTICAL});
 
-    //myRank.addXp(350);
-    //console.log("XP:" + myRank.xp);
-    //console.log("Level:" + myRank.level);
-    //myRank.addXp(650);
-    //console.log("XP:" + myRank.xp);
-    //console.log("Level:" + myRank.level);
+    hammer.on('swipedown', () => {
+        $('.add-wrapper').slideDown();
+    });
 
-    console.log($('.control-bar__bar-holder'));
+    hammer.on('swipeup', () => {
+        $('.add-wrapper').slideUp();
+    });
 
+    console.log(hammer);
 
 }
 

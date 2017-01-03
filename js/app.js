@@ -1,8 +1,9 @@
-import user from './User'
-import $ from 'jquery'
-import Rank from './Rank'
-import page from 'page'
-import index from './index'
+import user from './User';
+import $ from 'jquery';
+import Rank from './Rank';
+import page from 'page';
+import index from './index';
+import {initUi} from './ui';
 
 page('/', index)
 page('*', index)
@@ -26,3 +27,5 @@ function lectures() {
 function menu() {
 
 }
+
+initUi();
