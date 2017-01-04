@@ -6,17 +6,18 @@ import $ from 'jquery'
 import {colorTasks} from './ui';
 import Task from "./Task";
 
-let $tasksWrapper;
+let $content;
 
 export default function index() {
     // user.addListener('load-tasks', displayTasks);
-    $tasksWrapper = $('.doobe-wrapper__items');
+    $content = $('.content');
 //     $(window).ready(() => {
 //          displayTasks();
 //     });
 
 
-    $('.control-bar__bar-holder').on('click', () => {
+
+    /*$('.control-bar__bar-holder').on('click', () => {
         console.log('add task');
         // user.addXp(20).then(response => {
         //     console.log(response);
@@ -39,14 +40,21 @@ export default function index() {
             // TODO show that task addition failed
             console.log(error);
         });
-    });
+    });*/
 
     displayTasks();
 }
 
 function displayTasks() {
     user.getTasks().then(result => {
-        document.querySelector('.doobe-wrapper__items').innerHTML = tasksTemplate({tasks: result});
+        $content.html(tasksTemplate({tasks: result}));
+
+        $('.task').on('click', function () {
+            console.log(this);
+            let id = $(this).attr("id");
+
+            window.location = `task/${id}`;
+        });
 
         let taskNodes = document.querySelectorAll('.task');
         taskNodes.forEach(node => createHammerForTaskNode(node));

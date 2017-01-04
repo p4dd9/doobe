@@ -44,6 +44,7 @@ class User {
     }
 
     addTask(task) {
+        console.log(task);
         // Promise
         return database.put(task);
     }
@@ -83,8 +84,10 @@ class User {
         });
     }
 
-    getTask(task_id) {
-        return database.get(task_id);
+    getTask(id) {
+        return new Promise((resolve, reject) => {
+            database.get(id).then(doc => resolve(new Task(doc))).catch(error => reject(error));
+        });
     }
 
     addXp(value) {

@@ -20,30 +20,27 @@
 
     </head>
     <body>
-        <div class="doobe-wrapper container">
-            <section class="doobe-wrapper__items">
-            </section>
+        <div class="content"></div>
 
-            <div class="doobe-wrapper__control-bar">
-                <div class="control-bar__bar-holder"><i class="fa fa-bars"></i></div>
-                <div class="control-bar__progress">
-                    <p class="progress__information">?/?</p>
-                    <div class="progress__progress-bar">
-                        <div class="current_progress"></div>
-                    </div>
+        <div class="doobe-wrapper__control-bar">
+            <div class="control-bar__menu-button"><i class="fa fa-bars"></i></div>
+            <a href="/task/new" class="control-bar__add-button"><i class="fa fa-plus"></i></a>
+            <div class="control-bar__progress">
+                <p class="progress__information">?/?</p>
+                <div class="progress__progress-bar">
+                    <div class="current_progress"></div>
                 </div>
-                <div class="level-holder">
-                        <span class="level-content">?</span>
-                </div>
+            </div>
+            <div class="level-holder">
+                <span class="level-content">?</span>
             </div>
         </div>
 
-        <script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
-        <script src="/node_modules/swiped/dist/swiped.js"></script>
-        <script src="/app.js"></script>
-
-        <div class="add-wrapper">
-
+        <div class="menu">
+            <a class="menu__item" href="/lectures">Manage lectures</a>
         </div>
+
+        <script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
+        <script src="/app.js"></script>
     </body>
 </html>

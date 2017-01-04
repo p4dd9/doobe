@@ -4,7 +4,7 @@ import Rank from "./Rank"
 import User from './User'
 
 export function initUi() {
-    let hammer = new Hammer(document.querySelector('body'), { domEvents: true});
+    /*let hammer = new Hammer(document.querySelector('body'), { domEvents: true});
 
 
     hammer.get('swipe').set({direction: Hammer.DIRECTION_VERTICAL});
@@ -18,6 +18,7 @@ export function initUi() {
     });
 
     console.log(hammer);
+*/
 
 }
 

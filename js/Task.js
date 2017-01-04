@@ -1,6 +1,7 @@
 export default class Task {
-    constructor({_id = Date.now().toString(), created = Date.now(), due = Date.now(), text = "text", workload = 100} = {}) {
+    constructor({_id = Date.now().toString(), _rev, created = Date.now(), due = Date.now(), text = "text", workload = 100} = {}) {
         this._id = _id;
+        this._rev = _rev;
         this.type = 'task';
         this.created = created;
         this.due = due;
