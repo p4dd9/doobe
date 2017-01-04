@@ -76,7 +76,7 @@ h2 {
   border-bottom: 2px solid white;
 }
 
-.task__workload {
+.task__xp {
   float: right;
   padding: 15px 0;
 }
@@ -175,4 +175,36 @@ h2 {
   display: block;
   padding: 8px;
   background-color: $color-wrapper-control;
+}
+
+.task-reward {
+  position: absolute;
+  padding: 20px;
+  text-align: center;
+  left: 50%;
+  top: 30%;
+  border-radius: 7px;
+  /* transform-origin: center top; */
+  background-color: #03a9f4;
+  animation: swing 3s infinite ease-in-out;
+  box-shadow: 9px 10px 29px 0px rgba(0, 0, 0, 0.75);
+}
+
+.task-reward-content {
+  display: block;
+  margin: 15px;
+  border: 1px solid white;
+  padding: 5px;
+}
+
+@keyframes swing {
+  0% {
+    -webkit-transform: rotate(-6deg);
+  }
+  50% {
+    -webkit-transform: rotate(6deg);
+  }
+  100% {
+    -webkit-transform: rotate(-6deg);
+  }
 }

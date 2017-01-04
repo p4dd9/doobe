@@ -1,4 +1,5 @@
 import user from './User'
+import Rank from './Rank'
 import taskTemplate from '../templates/task.hbs'
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
@@ -16,31 +17,30 @@ export default function index() {
 //     });
 
 
-
     /*$('.control-bar__bar-holder').on('click', () => {
-        console.log('add task');
-        // user.addXp(20).then(response => {
-        //     console.log(response);
-        // }).catch(error => {
-        //     console.log(error);
-        // });
+     console.log('add task');
+     // user.addXp(20).then(response => {
+     //     console.log(response);
+     // }).catch(error => {
+     //     console.log(error);
+     // });
 
-        let task = new Task();
+     let task = new Task();
 
-        user.addTask(task).then(() => {
-            let $task = $(taskTemplate({task: task}));
-            $task.hide();
-            $task.appendTo($tasksWrapper);
-            $task.slideDown();
+     user.addTask(task).then(() => {
+     let $task = $(taskTemplate({task: task}));
+     $task.hide();
+     $task.appendTo($tasksWrapper);
+     $task.slideDown();
 
-            createHammerForTaskNode($task[0]);
+     createHammerForTaskNode($task[0]);
 
-            colorTasks();
-        }).catch(error => {
-            // TODO show that task addition failed
-            console.log(error);
-        });
-    });*/
+     colorTasks();
+     }).catch(error => {
+     // TODO show that task addition failed
+     console.log(error);
+     });
+     });*/
 
     displayTasks();
 }
@@ -94,12 +94,10 @@ function removeTask(task) {
     // Maybe we could remove this wrapping somehow?
     let $task = $(task);
     let id = $task.attr('id');
-    // console.log(id);
 
     user.removeTask(id).then(() => {
         $task.slideUp(() => {
             $task.remove();
-
             colorTasks();
         });
     }).catch(error => console.log(error));
@@ -109,14 +107,23 @@ function finishTask(task) {
     // Maybe we could remove this wrapping somehow?
     let $task = $(task);
     let id = $task.attr('id');
-    // console.log(id);
 
     user.finishTask(id).then(() => {
         $task.slideUp(() => {
-           $task.remove();
-
-           colorTasks();
+            $task.remove();
+            colorTasks();
         });
-
     }).catch(error => console.log(error));
+}
+
+export function displayFinishTaskInformation(amount) {
+    let item = $("<div class='task-reward'><h3>REWARD</h3><span class='task-reward-content'>" + amount + "XP</span></div>").hide().fadeIn(2000);
+    $('body').append(item);
+
+    setTimeout(function () {
+        setTimeout(function () {
+            $('.task-reward').remove();
+        }, 2000);
+        $('.task-reward').fadeOut(1000);
+    }, 3000);
 }
