@@ -1,6 +1,7 @@
 import database from './database';
 import Rank from './Rank';
 import Task from './Task';
+import { displayFinishTaskInformation as showTaskInfo } from "./index";
 import Lecture from "./Lecture";
 
 const RANK = 'rank';
@@ -20,8 +21,6 @@ class User {
                 database.put(this.rank);
             }
         });
-
-
     }
 
     getTasks() {
@@ -43,6 +42,7 @@ class User {
     }
 
     addTask(task) {
+        console.log(task);
         // Promise
         return database.put(task);
     }
@@ -62,8 +62,8 @@ class User {
          this.tasks.remove(task);
 
          this.fireEvent('load-tasks');
-         }).catch(displayError => {
-         console.log(displayError)
+         }).catch(error => {
+         console.log(error)
          });*/
     }
 
@@ -72,10 +72,11 @@ class User {
             // First get the task...
             database.get(id).then(doc => {
                 let task = new Task(doc);
+                let xpGain = task.calcXpGain();
 
-                console.log(task.calcXpGain());
-
-                this.addXp(task.calcXpGain());
+                console.log(xpGain);
+                this.addXp(xpGain);
+                showTaskInfo(xpGain);
                 // ...then remove the task
                 database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
             }).catch(error => reject(error));

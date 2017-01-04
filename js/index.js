@@ -1,4 +1,6 @@
 import user from './User'
+import Rank from './Rank'
+import taskTemplate from '../templates/task.hbs'
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
 
@@ -63,7 +65,6 @@ function removeTask(task) {
     user.removeTask(id).then(() => {
         $task.slideUp(() => {
             $task.remove();
-
             colorTasks();
         });
     }).catch(error => displayError(error));
@@ -77,9 +78,20 @@ function finishTask(task) {
 
     user.finishTask(id).then(() => {
         $task.slideUp(() => {
-           $task.remove();
-
-           colorTasks();
+            $task.remove();
+            colorTasks();
         });
     }).catch(error => displayError(error));
+}
+
+export function displayFinishTaskInformation(amount) {
+    let item = $("<div class='task-reward'><h3>REWARD</h3><span class='task-reward-content'>" + amount + "XP</span></div>").hide().fadeIn(2000);
+    $('body').append(item);
+
+    setTimeout(function () {
+        setTimeout(function () {
+            $('.task-reward').remove();
+        }, 2000);
+        $('.task-reward').fadeOut(1000);
+    }, 3000);
 }
