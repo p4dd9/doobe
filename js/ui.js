@@ -1,24 +1,21 @@
-import $ from 'jquery'
-import Task from "./Task"
-import Rank from "./Rank"
-import User from './User'
+import page from "page";
 
 export function initUi() {
     /*let hammer = new Hammer(document.querySelector('body'), { domEvents: true});
 
 
-    hammer.get('swipe').set({direction: Hammer.DIRECTION_VERTICAL});
+     hammer.get('swipe').set({direction: Hammer.DIRECTION_VERTICAL});
 
-    hammer.on('swipedown', () => {
-        $('.add-wrapper').slideDown();
-    });
+     hammer.on('swipedown', () => {
+     $('.add-wrapper').slideDown();
+     });
 
-    hammer.on('swipeup', () => {
-        $('.add-wrapper').slideUp();
-    });
+     hammer.on('swipeup', () => {
+     $('.add-wrapper').slideUp();
+     });
 
-    console.log(hammer);
-*/
+     console.log(hammer);
+     */
 
 }
 
@@ -31,4 +28,9 @@ export function colorTasks() {
         task.style.opacity = alpha;
         alpha -= offset;
     });
+}
+
+export function displayError(error) {
+    console.log('asdf' + error);
+    page("/error");
 }

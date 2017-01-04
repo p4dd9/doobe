@@ -1,46 +1,13 @@
 import user from './User'
-import taskTemplate from '../templates/task.hbs'
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
 
-import {colorTasks} from './ui';
-import Task from "./Task";
+import {colorTasks, displayError} from './ui';
 
 let $content;
 
 export default function index() {
-    // user.addListener('load-tasks', displayTasks);
     $content = $('.content');
-//     $(window).ready(() => {
-//          displayTasks();
-//     });
-
-
-
-    /*$('.control-bar__bar-holder').on('click', () => {
-        console.log('add task');
-        // user.addXp(20).then(response => {
-        //     console.log(response);
-        // }).catch(error => {
-        //     console.log(error);
-        // });
-
-        let task = new Task();
-
-        user.addTask(task).then(() => {
-            let $task = $(taskTemplate({task: task}));
-            $task.hide();
-            $task.appendTo($tasksWrapper);
-            $task.slideDown();
-
-            createHammerForTaskNode($task[0]);
-
-            colorTasks();
-        }).catch(error => {
-            // TODO show that task addition failed
-            console.log(error);
-        });
-    });*/
 
     displayTasks();
 }
@@ -60,10 +27,7 @@ function displayTasks() {
         taskNodes.forEach(node => createHammerForTaskNode(node));
 
         colorTasks();
-    }).catch(error => {
-        // TODO Couldn't load tasks -> notify the user
-        console.log(error);
-    });
+    }).catch(error => displayError(error));
 }
 
 function createHammerForTaskNode(task) {
@@ -102,7 +66,7 @@ function removeTask(task) {
 
             colorTasks();
         });
-    }).catch(error => console.log(error));
+    }).catch(error => displayError(error));
 }
 
 function finishTask(task) {
@@ -117,6 +81,5 @@ function finishTask(task) {
 
            colorTasks();
         });
-
-    }).catch(error => console.log(error));
+    }).catch(error => displayError(error));
 }

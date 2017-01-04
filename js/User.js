@@ -1,14 +1,13 @@
 import database from './database';
 import Rank from './Rank';
 import Task from './Task';
+import Lecture from "./Lecture";
 
 const RANK = 'rank';
 
 class User {
 
     constructor() {
-        this.listeners = new Map();
-
         database.get(RANK).then(result => {
             this.rank = new Rank(result);
             console.log(this.rank);
@@ -44,7 +43,6 @@ class User {
     }
 
     addTask(task) {
-        console.log(task);
         // Promise
         return database.put(task);
     }
@@ -54,8 +52,8 @@ class User {
             // First get the task...
             database.get(id).then(function (doc) {
                 // ...then remove the task
-                database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
-            }).catch(error => reject(error));
+                database.remove(doc).then(resolve).catch(reject);
+            }).catch(resolve);
         });
 
         /*database.remove(task).then(result => {
@@ -64,8 +62,8 @@ class User {
          this.tasks.remove(task);
 
          this.fireEvent('load-tasks');
-         }).catch(error => {
-         console.log(error)
+         }).catch(displayError => {
+         console.log(displayError)
          });*/
     }
 
@@ -107,17 +105,32 @@ class User {
         });
     }
 
-    addListener(event, fn) {
+    getLectures() {
+        return new Promise((resolve, reject) => {
+            database.query(doc => {
+                if ('lecture' == doc.type) {
+                    emit(doc)
+                }
+            }, {include_docs: true}).then(result => {
+                let lectures = [];
 
-        if (this.listeners[event] === undefined) {
-            this.listeners[event] = []
-        }
+                result.rows.forEach(row => {
+                    lectures.push(new Lecture(row.doc));
+                });
 
-        this.listeners[event].push(fn);
+                resolve(lectures);
+            }).catch(error => reject(error));
+        });
     }
 
-    fireEvent(event) {
-        this.listeners[event].forEach(fn => fn());
+    removeLecture(id) {
+        return new Promise((resolve, reject) => {
+            // First get the lecture...
+            database.get(id).then(function (doc) {
+                // ...then remove the lecture
+                database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
+            }).catch(error => reject(error));
+        });
     }
 }
 

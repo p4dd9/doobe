@@ -1,1 +1,11 @@
 <div class="navigation-bar"><a href="/"><i class="fa fa-arrow-left"></i></a></div>
+
+<section class="items">
+    {{#each lectures}}
+        <div class="task" data-id={{this._id}}>
+            <div class="task__description">
+                <h5 class="task__decription__title">{{this.name}}</h5>
+            </div>
+        </div>
+    {{/each}}
+</section>
