@@ -90,6 +90,7 @@ h2 {
 
 /*wrapepr__control-bar*/
 .doobe-wrapper__control-bar {
+  min-width: 400px;
   z-index: 2;
   position: fixed;
   left: 0;
@@ -175,9 +176,6 @@ h2 {
   display: block;
   padding: 8px;
   background-color: $color-wrapper-control;
-}
-
-body {
 }
 
 .task-reward {

@@ -1,5 +1,4 @@
 import user from './User'
-import Rank from './Rank'
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
 
@@ -33,11 +32,6 @@ function displayTasks() {
 
 function createHammerForTaskNode(task) {
     let theTaskHammer = new Hammer(task);
-
-    // Do we need swipe on the tasks?
-    /*theTaskHammer.get('swipe').set({
-     direction: Hammer.ALL
-     });*/
 
     theTaskHammer.get('pan').set({
         threshold: 50
@@ -94,5 +88,5 @@ export function displayXpReward(amount) {
             $('.task-reward').remove();
         }, 2000);
         $('.task-reward').fadeOut(1000);
-    }, 20000);
+    }, 3000);
 }
