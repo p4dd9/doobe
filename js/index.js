@@ -1,6 +1,5 @@
 import user from './User'
 import Rank from './Rank'
-import taskTemplate from '../templates/task.hbs'
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
 
