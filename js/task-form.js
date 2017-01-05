@@ -1,4 +1,3 @@
-// TODO get mode, for now just add
 import $ from "jquery";
 import taskFormTemplate from "../templates/task-form.hbs"
 import user from "./User";
@@ -6,14 +5,18 @@ import Task from "./Task";
 import page from "page";
 import {displayError} from "./ui";
 
+let $content;
 
 export default function taskForm(e) {
     let task;
 
-    $(".content").html(taskFormTemplate());
+    $content = $(".content");
 
-    $(".task-form").submit(e => {
-        e.preventDefault();
+    user.getLectures().then(result => {
+        $content.html(taskFormTemplate({lectures: result}));
+
+        $("form").submit(e => {
+            e.preventDefault();
 
         console.log("form submitted");
 
@@ -24,9 +27,11 @@ export default function taskForm(e) {
             task = new Task({"text": $("#task-name").val()});
         }
 
-        user.addTask(task).then(() => page("/")).catch(displayError);
+            user.addTask(task).then(page("/")).catch(displayError);
 
-    });
+        });
+    }).catch(displayError);
+
 
     let id = e.params.id;
 
