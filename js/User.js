@@ -1,7 +1,7 @@
 import database from './database';
 import Rank from './Rank';
 import Task from './Task';
-import { displayFinishTaskInformation as showTaskInfo } from "./index";
+import { displayXpReward as showTaskInfo } from "./index";
 import Lecture from "./Lecture";
 
 const RANK = 'rank';
@@ -74,9 +74,9 @@ class User {
                 let task = new Task(doc);
                 let xpGain = task.calcXpGain();
 
-                console.log(xpGain);
+                // console.log(xpGain);
                 this.addXp(xpGain);
-                showTaskInfo(xpGain);
+                showTaskInfo(xpGain); // REMOVE THIS FROM THE MODEL
                 // ...then remove the task
                 database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
             }).catch(error => reject(error));

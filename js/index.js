@@ -73,7 +73,9 @@ function finishTask(task) {
     // Maybe we could remove this wrapping somehow?
     let $task = $(task);
     let id = $task.attr('id');
+
     // console.log(id);
+    // displayXpReward(user.getTask(id).calcXpGain());
 
     user.finishTask(id).then(() => {
         $task.slideUp(() => {
@@ -83,7 +85,7 @@ function finishTask(task) {
     }).catch(error => displayError(error));
 }
 
-export function displayFinishTaskInformation(amount) {
+export function displayXpReward(amount) {
     let item = $("<div class='task-reward'><h3>REWARD</h3><span class='task-reward-content'>" + amount + "XP</span></div>").hide().fadeIn(2000);
     $('body').append(item);
 
@@ -92,5 +94,5 @@ export function displayFinishTaskInformation(amount) {
             $('.task-reward').remove();
         }, 2000);
         $('.task-reward').fadeOut(1000);
-    }, 3000);
+    }, 20000);
 }

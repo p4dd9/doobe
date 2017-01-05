@@ -177,14 +177,17 @@ h2 {
   background-color: $color-wrapper-control;
 }
 
+body {
+}
+
 .task-reward {
   position: absolute;
   padding: 20px;
   text-align: center;
   left: 50%;
-  top: 30%;
+  top: 40%;
   border-radius: 7px;
-  /* transform-origin: center top; */
+  -webkit-transform-origin: 50% 50%;
   background-color: #03a9f4;
   animation: swing 3s infinite ease-in-out;
   box-shadow: 9px 10px 29px 0px rgba(0, 0, 0, 0.75);
@@ -199,12 +202,12 @@ h2 {
 
 @keyframes swing {
   0% {
-    -webkit-transform: rotate(-6deg);
+    -webkit-transform: rotate(-6deg) translate(-50%, -50%);
   }
   50% {
-    -webkit-transform: rotate(6deg);
+    -webkit-transform: rotate(6deg) translate(-50%, -50%);
   }
   100% {
-    -webkit-transform: rotate(-6deg);
+    -webkit-transform: rotate(-6deg) translate(-50%, -50%);
   }
 }
