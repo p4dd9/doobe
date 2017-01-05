@@ -50,7 +50,7 @@ h2 {
 }
 
 /*task*/
-.task {
+.task, .lecture {
   font-family: 'Avenir', sans-serif;
   display: block;
   padding: 20px;
@@ -58,6 +58,14 @@ h2 {
   background-color: $color-item;
   height: 90px;
   cursor: pointer;
+}
+
+.lecture {
+  height: auto;
+
+  &__name {
+    text-transform: uppercase;
+  }
 }
 
 .task__description {

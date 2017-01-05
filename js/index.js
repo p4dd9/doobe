@@ -3,9 +3,10 @@ import Rank from './Rank'
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
 
-import {colorTasks, displayError} from './ui';
+import {colorItems, displayError} from './ui';
 
 let $content;
+let $items;
 
 export default function index() {
     $content = $('.content');
@@ -16,6 +17,7 @@ export default function index() {
 function displayTasks() {
     user.getTasks().then(result => {
         $content.html(tasksTemplate({tasks: result}));
+        $items = $(".items");
 
         $('.task').on('click', function () {
             console.log(this);
@@ -27,7 +29,7 @@ function displayTasks() {
         let taskNodes = document.querySelectorAll('.task');
         taskNodes.forEach(node => createHammerForTaskNode(node));
 
-        colorTasks();
+        colorItems($items);
     }).catch(error => displayError(error));
 }
 
@@ -64,9 +66,9 @@ function removeTask(task) {
     user.removeTask(id).then(() => {
         $task.slideUp(() => {
             $task.remove();
-            colorTasks();
+            colorItems($items);
         });
-    }).catch(error => displayError(error));
+    }).catch(displayError);
 }
 
 function finishTask(task) {
@@ -78,9 +80,9 @@ function finishTask(task) {
     user.finishTask(id).then(() => {
         $task.slideUp(() => {
             $task.remove();
-            colorTasks();
+            colorItems($items);
         });
-    }).catch(error => displayError(error));
+    }).catch(displayError);
 }
 
 export function displayFinishTaskInformation(amount) {

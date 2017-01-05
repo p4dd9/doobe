@@ -1,32 +1,18 @@
+import $ from "jquery";
 import page from "page";
 
 export function initUi() {
-    /*let hammer = new Hammer(document.querySelector('body'), { domEvents: true});
-
-
-     hammer.get('swipe').set({direction: Hammer.DIRECTION_VERTICAL});
-
-     hammer.on('swipedown', () => {
-     $('.add-wrapper').slideDown();
-     });
-
-     hammer.on('swipeup', () => {
-     $('.add-wrapper').slideUp();
-     });
-
-     console.log(hammer);
-     */
-
 }
 
-export function colorTasks() {
-    let tasks = document.querySelectorAll('.task');
-    let alpha = 1;
-    let offset = 1.0 / tasks.length;
+export function colorItems($container) {
+    let $children = $container.children();
 
-    tasks.forEach(task => {
-        task.style.opacity = alpha;
-        alpha -= offset;
+    let lowerBound = 0.2;
+    let range = 1.0 - lowerBound;
+    let step = range / $children.length;
+
+    $children.each((index, element) => {
+        $(element).css("opacity", lowerBound + (range - index * step));
     });
 }
 

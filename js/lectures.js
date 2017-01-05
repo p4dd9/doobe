@@ -1,28 +1,28 @@
 import user from "./User"
 import $ from "jquery";
+import {displayError, colorItems} from "./ui";
+import Lecture from "./Lecture";
 import lectureTemplate from "../templates/lecture.hbs";
 import lecturesTemplate from "../templates/lectures.hbs";
-import {displayError, colorTasks} from "./ui";
-import Lecture from "./Lecture";
 
 let $content;
+let $items;
 
 export default function lectures() {
     $content = $(".content");
 
-
-
-    displayTasks();
+    displayLectures();
 }
 
-function displayTasks() {
+function displayLectures() {
     user.getLectures().then(result => {
         $content.html(lecturesTemplate({lectures: result}));
+        $items = $(".items");
 
-        let taskNodes = document.querySelectorAll(".task");
-        taskNodes.forEach(node => createHammerForTaskNode(node));
+        let taskNodes = document.querySelectorAll(".lecture");
+        taskNodes.forEach(createHammerForLectureNode);
 
-        colorTasks();
+        colorItems($items);
 
         $(".lecture-form").submit(e => {
             e.preventDefault();
@@ -35,55 +35,51 @@ function displayTasks() {
                 let $lecture = $(lectureTemplate({lecture: lecture}));
 
                 $lecture.hide();
-                $lecture.appendTo($(".items"));
+                $lecture.appendTo($items);
 
-                colorTasks();
+                colorItems($items);
 
                 $lecture.slideDown();
 
-                createHammerForTaskNode($lecture[0])
+                createHammerForLectureNode($lecture[0])
 
             }).catch(displayError);
         })
-
-    }).catch(error => displayError(error));
+    }).catch(displayError);
 
 }
 
-function createHammerForTaskNode(task) {
-    let theTaskHammer = new Hammer(task);
+function createHammerForLectureNode(lectureNode) {
+    let hammer = new Hammer(lectureNode);
 
     // Do we need swipe on the tasks?
-    /*theTaskHammer.get("swipe").set({
+    /*hammer.get("swipe").set({
      direction: Hammer.ALL
      });*/
 
-    theTaskHammer.get("pan").set({
+    hammer.get("pan").set({
         threshold: 50
     });
 
-    theTaskHammer.on("panend", event => {
+    hammer.on("panend", event => {
         switch (event.direction) {
-            case Hammer.DIRECTION_RIGHT:
-                removeTask(task);
-                break;
             case Hammer.DIRECTION_LEFT:
-                removeTask(task);
+            case Hammer.DIRECTION_RIGHT:
+                removeLecture(lectureNode);
                 break;
         }
     });
 }
 
-function removeTask(task) {
+function removeLecture(lectureNode) {
     // Maybe we could remove this wrapping somehow?
-    let $task = $(task);
-    let id = $task.attr("data-id");
-    // console.log(id);
+    let $lecture = $(lectureNode);
+    let id = $lecture.attr("data-id");
 
     user.removeLecture(id).then(() => {
-        $task.slideUp(() => {
-            $task.remove();
-            colorTasks();
+        $lecture.slideUp(() => {
+            $lecture.remove();
+            colorItems($items);
         });
-    }).catch(error => displayError(error));
+    }).catch(displayError);
 }

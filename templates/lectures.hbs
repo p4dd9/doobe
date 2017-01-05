@@ -1,11 +1,9 @@
 <div class="navigation-bar"><a href="/"><i class="fa fa-arrow-left"></i></a></div>
 
-<section class="items">
+<section class="items lectures">
     {{#each lectures}}
-        <div class="task" data-id={{this._id}}>
-            <div class="task__description">
-                <h5 class="task__decription__title">{{this.name}}</h5>
-            </div>
+        <div class="lecture" data-id={{this._id}}>
+            <p class="lecture__name">{{this.name}}</p>
         </div>
     {{/each}}
 </section>
