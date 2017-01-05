@@ -50,7 +50,7 @@ h2 {
 }
 
 /*task*/
-.task {
+.task, .lecture {
   font-family: 'Avenir', sans-serif;
   display: block;
   padding: 20px;
@@ -58,6 +58,14 @@ h2 {
   background-color: $color-item;
   height: 90px;
   cursor: pointer;
+}
+
+.lecture {
+  height: auto;
+
+  &__name {
+    text-transform: uppercase;
+  }
 }
 
 .task__description {
@@ -104,8 +112,8 @@ h2 {
 }
 
 .items {
-  height: 90vh;
-  overflow-y: scroll;
+  //max-height: 90vh;
+  //overflow-y: scroll;
   background-color: white;
 }
 
@@ -196,6 +204,11 @@ h2 {
   margin: 15px;
   border: 1px solid white;
   padding: 5px;
+}
+
+.lecture-form {
+  position: fixed;
+  bottom: 10vh;
 }
 
 @keyframes swing {
