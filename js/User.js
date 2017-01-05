@@ -124,13 +124,17 @@ class User {
         });
     }
 
+    addLecture(lecture) {
+        return database.put(lecture);
+    }
+
     removeLecture(id) {
         return new Promise((resolve, reject) => {
             // First get the lecture...
             database.get(id).then(function (doc) {
                 // ...then remove the lecture
-                database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
-            }).catch(error => reject(error));
+                database.remove(doc).then(resolve).catch(reject);
+            }).catch(reject);
         });
     }
 }

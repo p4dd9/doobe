@@ -103,7 +103,7 @@ h2 {
 }
 
 .items {
-  height: 90vh;
+  max-height: 90vh;
   overflow-y: scroll;
   background-color: white;
 }
@@ -195,6 +195,11 @@ h2 {
   margin: 15px;
   border: 1px solid white;
   padding: 5px;
+}
+
+.lecture-form {
+  position: fixed;
+  bottom: 10vh;
 }
 
 @keyframes swing {
