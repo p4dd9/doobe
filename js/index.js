@@ -81,6 +81,11 @@ function finishTask(task) {
     }).catch(displayError);
 }
 
+export function displayLevelReward() {
+    $('.level-holder').css('animation','level-up 3s 1 ease-in-out');
+    $('.level-content').fadeOut(1000).fadeIn(1000);
+}
+
 export function displayXpReward(amount) {
     let item = $("<div class='task-reward'><h3>REWARD</h3><span class='task-reward-content'>" + amount + "XP</span></div>").hide().fadeIn(2000);
     $('body').append(item);
