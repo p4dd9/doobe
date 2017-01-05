@@ -10,8 +10,6 @@ import {initMenu} from "./menu";
 import errorTemplate from "../templates/error.hbs"
 import notFoundTemplate from "../templates/not_found.hbs"
 
-
-
 page("/task/new", taskForm);
 page("/task/:id", taskForm);
 page("/lectures", lectures);

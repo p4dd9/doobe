@@ -69,7 +69,7 @@ function finishTask(task) {
     let id = $task.attr('id');
 
     // console.log(id);
-    // displayXpReward(user.getTask(id).calcXpGain());
+    // displayXpReward(user.getTask(id).getXp());
 
     user.finishTask(id).then(() => {
         $task.slideUp(() => {

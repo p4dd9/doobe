@@ -72,7 +72,7 @@ class User {
             // First get the task...
             database.get(id).then(doc => {
                 let task = new Task(doc);
-                let xpGain = task.calcXpGain();
+                let xpGain = task.getXp();
 
                 // console.log(xpGain);
                 this.addXp(xpGain);

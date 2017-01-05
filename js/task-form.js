@@ -19,8 +19,7 @@ export default function taskForm(e) {
 
         if (task != undefined) {
             task.text = $("#task-name").val();
-
-
+            // task.remainingDays = $('#remaining-days').val(); please add the remaining days
         } else {
             task = new Task({"text": $("#task-name").val()});
         }
