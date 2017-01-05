@@ -2,6 +2,7 @@ import user from './User'
 import Rank from './Rank'
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
+import page from "page";
 
 import {colorItems, displayError} from './ui';
 
@@ -20,10 +21,9 @@ function displayTasks() {
         $items = $(".items");
 
         $('.task').on('click', function () {
-            console.log(this);
             let id = $(this).attr("id");
 
-            window.location = `task/${id}`;
+            page(`/task/${id}`);
         });
 
         let taskNodes = document.querySelectorAll('.task');

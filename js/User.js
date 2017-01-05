@@ -1,7 +1,7 @@
 import database from './database';
 import Rank from './Rank';
 import Task from './Task';
-import { displayFinishTaskInformation as showTaskInfo } from "./index";
+import {displayFinishTaskInformation as showTaskInfo} from "./index";
 import Lecture from "./Lecture";
 
 const RANK = 'rank';
@@ -32,12 +32,10 @@ class User {
             }, {include_docs: true}).then(result => {
                 let tasks = [];
 
-                result.rows.forEach(row => {
-                    tasks.push(new Task(row.doc));
-                });
+                result.rows.forEach(row => tasks.push(new Task(row.doc)));
 
                 resolve(tasks);
-            }).catch(error => reject(error));
+            }).catch(reject);
         });
     }
 
@@ -55,16 +53,6 @@ class User {
                 database.remove(doc).then(resolve).catch(reject);
             }).catch(resolve);
         });
-
-        /*database.remove(task).then(result => {
-         console.log(result);
-
-         this.tasks.remove(task);
-
-         this.fireEvent('load-tasks');
-         }).catch(error => {
-         console.log(error)
-         });*/
     }
 
     finishTask(id) {
@@ -78,14 +66,14 @@ class User {
                 this.addXp(xpGain);
                 showTaskInfo(xpGain);
                 // ...then remove the task
-                database.remove(doc).then(doc => resolve(doc)).catch(error => reject(error));
-            }).catch(error => reject(error));
+                database.remove(doc).then(resolve).catch(reject);
+            }).catch(reject);
         });
     }
 
     getTask(id) {
         return new Promise((resolve, reject) => {
-            database.get(id).then(doc => resolve(new Task(doc))).catch(error => reject(error));
+            database.get(id).then(doc => resolve(new Task(doc))).catch(reject);
         });
     }
 
@@ -101,8 +89,8 @@ class User {
                     _rev: doc._rev,
                     xp: this.rank.xp,
                     level: this.rank.level
-                }).then(doc => resolve(doc)).catch(error => reject(error));
-            }).catch(error => reject(error));
+                }).then(resolve).catch(reject);
+            }).catch(reject);
         });
     }
 
@@ -115,12 +103,10 @@ class User {
             }, {include_docs: true}).then(result => {
                 let lectures = [];
 
-                result.rows.forEach(row => {
-                    lectures.push(new Lecture(row.doc));
-                });
+                result.rows.forEach(row => lectures.push(new Lecture(row.doc)));
 
                 resolve(lectures);
-            }).catch(error => reject(error));
+            }).catch(reject);
         });
     }
 
