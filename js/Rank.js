@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import {displayLevelReward} from './index'
 
 export default class Rank {
     constructor({xp = 0, level = 1, time = new Date()} = {}) {
@@ -12,6 +13,7 @@ export default class Rank {
 
     addXp(value) {
         if (value + this.xp >= this.maxProgress) {
+            displayLevelReward();
             this.level += 1;
             this.xp = 0;
         } else this.xp += value;

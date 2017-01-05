@@ -223,6 +223,15 @@ h2 {
   }
 }
 
+@keyframes level-up {
+  From {
+    -webkit-transform: perspective(400px) rotateX(0deg)
+  }
+  To {
+    -webkit-transform: perspective(400px) rotateX(360deg)
+  }
+}
+
 .task-lecture {
   display: block;
   background: url("../css/unfold-more.svg") no-repeat right center;

@@ -17,6 +17,6 @@ export function colorItems($container) {
 }
 
 export function displayError(error) {
-    console.log('asdf' + error);
+    console.log('display' + error);
     page("/error");
 }
