@@ -1,22 +1,14 @@
-import $ from 'jquery'
-import {displayLevelReward} from './index'
-
 export default class Rank {
     constructor({_rev, xp = 0, level = 1} = {}) {
         // Database fields
-        this._id = "rank";
         this._rev = _rev;
         this.xp = xp;
         this.level = level;
-
-        // Other fields
-        this.maxProgress = Rank.getMaxXpForLevel(level);
-        this.updateLevelXp();
     }
 
     toDocument() {
         return {
-            _id: this._id,
+            _id: "rank",
             _rev: this._rev,
             xp: this.xp,
             level: this.level
@@ -24,23 +16,21 @@ export default class Rank {
     }
 
     addXp(value) {
-        if (value + this.xp >= this.maxProgress) {
-            displayLevelReward();
-            this.xp = (this.xp + value) - this.maxProgress
+        let maxXpForLevel = Rank.getMaxXpForLevel(this.level);
+
+        if (value + this.xp >= maxXpForLevel) {
+            this.xp = (this.xp + value) - maxXpForLevel;
             this.level += 1;
-        } else this.xp += value;
-        this.updateLevelXp();
+
+            return true;
+        }
+
+        this.xp += value;
+        return false
     }
 
-    updateLevelXp() {
-        $('.current_progress').width(this.xpToPercentage() + '%');
-        this.maxProgress = Rank.getMaxXpForLevel(this.level); // recalculate maxProgress based on level
-        $('.progress__information').html(this.xp + '/' + this.maxProgress);
-        $('.level-content').html(this.level);
-    }
-
-    xpToPercentage() {
-        return (this.xp / this.maxProgress) * 100;
+    xpInPercentage() {
+        return (this.xp / Rank.getMaxXpForLevel(this.level)) * 100;
     }
 
     static getMaxXpForLevel(level) {

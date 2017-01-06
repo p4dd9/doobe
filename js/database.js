@@ -87,24 +87,6 @@ export function removeTask(id) {
     });
 }
 
-export function finishTask(id) {
-    return new Promise((resolve, reject) => {
-        // First get the task...
-        database.get(id).then(doc => {
-            /*
-             let task = new Task(doc);
-             let xpGain = task.getXp();
-
-             // console.log(xpGain);
-             this.addXp(xpGain);
-             showTaskInfo(xpGain); // REMOVE THIS FROM THE MODEL
-             */
-            // ...then remove the task
-            database.remove(doc).then(resolve).catch(reject);
-        }).catch(reject);
-    });
-}
-
 // LECTURES
 
 /**

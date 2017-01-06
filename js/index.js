@@ -4,7 +4,7 @@ import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
 import page from "page";
 
-import {colorItems, displayError} from './ui';
+import * as ui from './ui';
 
 let $content;
 let $items;
@@ -28,8 +28,8 @@ export default function index() {
         let taskNodes = document.querySelectorAll('.task');
         taskNodes.forEach(node => createHammerForTaskNode(node));
 
-        colorItems($items);
-    }).catch(displayError);
+        ui.colorItems($items);
+    }).catch(ui.displayError);
 }
 
 function createHammerForTaskNode(task) {
@@ -57,12 +57,12 @@ function removeTask(task) {
     let id = $task.attr('data-id');
     // console.log(id);
 
-    database.removeTask(id).then(() => {
-        $task.slideUp(() => {
-            $task.remove();
-            colorItems($items);
-        });
-    }).catch(displayError);
+    database.removeTask(id).catch(ui.displayError);
+
+    $task.slideUp(() => {
+        $task.remove();
+        ui.colorItems($items);
+    });
 }
 
 function finishTask(task) {
@@ -70,30 +70,22 @@ function finishTask(task) {
     let $task = $(task);
     let id = $task.attr('data-id');
 
-    // console.log(id);
-    // displayXpReward(user.getTask(id).getXp());
+    database.getTask(id).then(task => {
+        database.getRank().then(rank => {
+            if (rank.addXp(task.xp)) {
+                ui.displayLevelReward();
+            }
+            ui.updateRank(rank);
+            ui.displayXpReward(task.xp);
 
-    database.finishTask(id).then(() => {
-        $task.slideUp(() => {
-            $task.remove();
-            colorItems($items);
-        });
-    }).catch(displayError);
-}
+            database.updateRank(rank).catch(ui.displayError);
+        }).catch(ui.displayError);
 
-export function displayLevelReward() {
-    $('.level-holder').css('animation', 'level-up 3s 1 ease-in-out');
-    $('.level-content').fadeOut(1000).fadeIn(1000);
-}
+        database.removeTask(id).catch(ui.displayError);
+    }).catch(ui.displayError);
 
-export function displayXpReward(amount) {
-    let item = $("<div class='task-reward'><h3>REWARD</h3><span class='task-reward-content'>" + amount + "XP</span></div>").hide().fadeIn(2000);
-    $('body').append(item);
-
-    setTimeout(function () {
-        setTimeout(function () {
-            $('.task-reward').remove();
-        }, 2000);
-        $('.task-reward').fadeOut(1000);
-    }, 3000);
+    $task.slideUp(() => {
+        $task.remove();
+        ui.colorItems($items);
+    });
 }
