@@ -15,17 +15,29 @@ export default function taskForm(e) {
     user.getLectures().then(result => {
         $content.html(taskFormTemplate({lectures: result}));
 
+        // WORKLOAD
+        let $workloadNum = $('.workload-num');
+
+        $workloadNum.on('click tap', function () {
+            $(".selected").each(function () {
+                $(this).removeClass('selected');
+            });
+
+            $(this).addClass('selected');
+        });
+        // END WORKLOAD
+
         $("form").submit(e => {
             e.preventDefault();
 
-        console.log("form submitted");
+            console.log("form submitted");
 
-        if (task != undefined) {
-            task.text = $("#task-name").val();
-            // task.remainingDays = $('#remaining-days').val(); please add the remaining days
-        } else {
-            task = new Task({"text": $("#task-name").val()});
-        }
+            if (task != undefined) {
+                task.text = $("#task-name").val();
+                // task.remainingDays = $('#remaining-days').val(); please add the remaining days
+            } else {
+                task = new Task({"text": $("#task-name").val()});
+            }
 
             user.addTask(task).then(page("/")).catch(displayError);
 

@@ -10,6 +10,9 @@ let $items;
 
 export default function index() {
     $content = $('.content');
+    $('.control-bar__add-button').on('tap click', function () {
+        $('.menu').fadeOut();
+    });
 
     displayTasks();
 }
