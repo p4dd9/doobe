@@ -14,8 +14,8 @@ export default class Rank {
     addXp(value) {
         if (value + this.xp >= this.maxProgress) {
             displayLevelReward();
+            this.xp = (this.xp + value) - this.maxProgress
             this.level += 1;
-            this.xp = 0;
         } else this.xp += value;
         this.updateLevelXp();
     }

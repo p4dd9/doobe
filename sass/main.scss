@@ -94,6 +94,10 @@ h2 {
   display: block;
   height: 100vh;
   background-color: $color-wrapper-background;
+  background-image: url("../assets/logo_transp.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40% 40%;
 }
 
 /*wrapepr__control-bar*/
@@ -131,6 +135,7 @@ h2 {
   padding: 20px;
   border-bottom: 2px solid white;
   text-decoration: none;
+  background-color: #005964;
 }
 
 .menu__item:hover {
@@ -256,6 +261,8 @@ h2 {
 
 .task-form, .task-form-list  {
   display: block;
+  height: 100%;
+  background-color: #6596a1;
 }
 
 .task__form-item {
