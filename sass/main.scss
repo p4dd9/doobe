@@ -125,6 +125,18 @@ h2 {
   transform: translateY(-50%);
 }
 
+.menu__item {
+  text-align: center;
+  display: block;
+  padding: 20px;
+  border-bottom: 2px solid white;
+  text-decoration: none;
+}
+
+.menu__item:hover {
+  background-color: #6596a1;
+}
+
 .control-bar__add-button {
   left: 80px;
 }
@@ -271,4 +283,9 @@ h2 {
 select {
   color: black;
   width: 50%;
+  background-color: white;
+}
+
+.lecture-item {
+  // padding: 20px;
 }
