@@ -241,3 +241,34 @@ h2 {
     text-transform: uppercase;
   }
 }
+
+.task-form, .task-form-list  {
+  display: block;
+}
+
+.task__form-item {
+  display: block;
+  padding: 20px;
+}
+
+.form-name {
+  width: 20%;
+}
+
+.form-input {
+  width: 75%;
+}
+
+.workload-numbers {
+  display: flex;
+  justify-content: space-around;
+}
+
+#workload {
+  width: 100%;
+}
+
+select {
+  color: black;
+  width: 50%;
+}

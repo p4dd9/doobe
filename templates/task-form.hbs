@@ -1,20 +1,58 @@
 <div class="navigation-bar"><a href="/"><i class="fa fa-arrow-left"></i></a></div>
 
 <form class="task-form">
-    <label for="task-name">Name</label>
-    <input type="text" id="task-name" value="mytaskname">
-    <input type="number" id="remaining-days" min="1" max="5">
+    <ol class="task-form-list">
+        <li class="task__form-item">
+            <div class="form-name">
+                <label for="task-name">Name</label>
+            </div>
+            <div class="form-input">
+                <input type="text" id="task-name" value="mytaskname">
+            </div>
+        </li>
 
-    <div class="task-lecture">
+        <li class="task__form-item">
+            <div class="form-name">
+                <label for="task-name">Days</label>
+            </div>
+            <div class="form-input">
+                <input type="number" id="remaining-days" min="1" max="5">
+            </div>
+        </li>
 
-        <select>
-            {{#each lectures}}
-                <option>{{this.name}}</option>
-            {{/each}}
-        </select>
-    </div>
+        <li class="task__form-item">
+            <div class="form-name">
+                <div>
+                    <label for="workload" class="workload">Workload</label>
+                </div>
+            </div>
+            <div class="form-input">
+                <div class="workload-numbers"><span>1</span> <span>2</span> <span>3</span> <span>5</span> <span>8</span> <span>13</span> <span>21</span></div>
+                <input id="workload" type="range" min="0" max="6">
+            </div>
+        </li>
 
-    <input type="submit" id="form-submit" value="Save task">
+        <li class="task__form-item">
+            <div class="form-name">
+                <div>
+                    <label for="task-lecture" class="lectures">Lecture</label>
+                </div>
+            </div>
+            <div class="form-input">
+                <select>
+                    {{#each lectures}}
+                        <option>{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </li>
+
+        <li>
+            <div class="form-name">
+                <input type="submit" id="form-submit" value="Save task">
+            </div>
+        </li>
+    </ol>
 
 
 </form>
