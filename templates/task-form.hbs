@@ -7,7 +7,7 @@
                 <label for="task-name">Name</label>
             </div>
             <div class="form-input">
-                <input type="text" id="task-name" placeholder="enter taskname" required>
+                <input type="text" id="task-name" placeholder="Name of the task..." autocomplete="off" required>
             </div>
         </li>
 
@@ -29,7 +29,8 @@
                 </div>
             </div>
             <div class="form-input">
-                <div class="workload-numbers"><span class="workload-num selected">1</span> <span class="workload-num">2</span>
+                <div class="workload-numbers"><span class="workload-num selected">1</span>
+                    <span class="workload-num">2</span>
                     <span class="workload-num">3</span>
                     <span class="workload-num">5</span> <span class="workload-num">8</span> <span class="workload-num">13</span>
                     <span class="workload-num">21</span></div>
@@ -43,10 +44,11 @@
                     <label for="task-lecture" class="lectures">Lecture</label>
                 </div>
             </div>
-            <div class="form-input">
+            <div class="form-input asdf-form">
                 <select>
+                    <option data-id="general">General</option>
                     {{#each lectures}}
-                        <option>{{this.name}}</option>
+                        <option data-id="{{this._id}}">{{this.name}}</option>
                     {{/each}}
                 </select>
             </div>

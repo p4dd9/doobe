@@ -2,13 +2,25 @@ import $ from 'jquery'
 import {displayLevelReward} from './index'
 
 export default class Rank {
-    constructor({xp = 0, level = 1, time = new Date()} = {}) {
-        this._id = 'rank';
+    constructor({_rev, xp = 0, level = 1} = {}) {
+        // Database fields
+        this._id = "rank";
+        this._rev = _rev;
         this.xp = xp;
         this.level = level;
-        this.time = time;
-        this.maxProgress = this.getLevelXpMax(level);
+
+        // Other fields
+        this.maxProgress = Rank.getMaxXpForLevel(level);
         this.updateLevelXp();
+    }
+
+    toDocument() {
+        return {
+            _id: this._id,
+            _rev: this._rev,
+            xp: this.xp,
+            level: this.level
+        }
     }
 
     addXp(value) {
@@ -22,7 +34,7 @@ export default class Rank {
 
     updateLevelXp() {
         $('.current_progress').width(this.xpToPercentage() + '%');
-        this.maxProgress = this.getLevelXpMax(this.level); // recalculate maxProgress based on level
+        this.maxProgress = Rank.getMaxXpForLevel(this.level); // recalculate maxProgress based on level
         $('.progress__information').html(this.xp + '/' + this.maxProgress);
         $('.level-content').html(this.level);
     }
@@ -31,9 +43,9 @@ export default class Rank {
         return (this.xp / this.maxProgress) * 100;
     }
 
-    getLevelXpMax(level) {
+    static getMaxXpForLevel(level) {
         if (level <= 1) return 100;
 
-        return level * 100 + this.getLevelXpMax(level - 1);
+        return level * 100 + Rank.getMaxXpForLevel(level - 1);
     }
 }

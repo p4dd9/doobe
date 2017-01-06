@@ -1,6 +1,7 @@
+import * as database from "./database";
+
 import $ from "jquery";
 import taskFormTemplate from "../templates/task-form.hbs"
-import user from "./User";
 import Task from "./Task";
 import page from "page";
 import {displayError} from "./ui";
@@ -12,8 +13,8 @@ export default function taskForm(e) {
 
     $content = $(".content");
 
-    user.getLectures().then(result => {
-        $content.html(taskFormTemplate({lectures: result}));
+    database.getLectures().then(lectures => {
+        $content.html(taskFormTemplate({lectures: lectures}));
 
         // WORKLOAD
         let $workloadNum = $('.workload-num');
@@ -32,26 +33,43 @@ export default function taskForm(e) {
 
             console.log("form submitted");
 
-            if (task != undefined) {
-                task.text = $("#task-name").val();
-                // task.remainingDays = $('#remaining-days').val(); please add the remaining days
-            } else {
-                task = new Task({"text": $("#task-name").val()});
+            let lectureId = $(".asdf-form option:selected").attr("data-id");
+            console.log(lectureId);
+
+            let name = $("#task-name").val();
+            let days = $("#remaining-days").val();
+
+
+            // hr, min, s, ms
+            let due = new Date(Date.now() + days * 24 * 60 * 60 * 1000).getTime();
+
+            if (task === undefined) {
+                task = new Task({due: due});
             }
 
-            user.addTask(task).then(page("/")).catch(displayError);
+            task.name = name;
+            task.due = due;
+            task.lectureId = lectureId;
 
+            console.log(task);
+
+            database.addTask(task).then(page("/")).catch(displayError);
         });
+
+
+        let id = e.params.id;
+
+        if (id !== undefined) {
+            // We"re viewing a task
+            database.getTask(id).then(result => {
+                task = result;
+                console.log(task);
+
+                $("#task-name").val(task.name);
+                $("#remaining-days").val(task.remainingDays);
+                $(".asdf-form option[data-id=" + task.lectureId + "]").attr('selected', 'selected');
+
+            })
+        }
     }).catch(displayError);
-
-
-    let id = e.params.id;
-
-    if (id !== undefined) {
-        // We"re viewing a task
-        user.getTask(id).then(result => {
-            task = result;
-            $("#task-name").val(task.text);
-        })
-    }
 }
