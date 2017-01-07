@@ -25,7 +25,10 @@ export default function index() {
         });
 
         let taskNodes = document.querySelectorAll('.task');
-        taskNodes.forEach(node => createHammerForTaskNode(node));
+        for(let node of taskNodes) {
+            createHammerForTaskNode(node);
+        }
+        // taskNodes.forEach(node => createHammerForTaskNode(node));
 
         ui.colorItems($items);
     }).catch(ui.displayError);

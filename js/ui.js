@@ -36,13 +36,10 @@ export function displayLevelReward() {
 }
 
 export function displayXpReward(amount) {
-    let item = $("<div class='task-reward'><h3>REWARD</h3><span class='task-reward-content'>" + amount + "XP</span></div>").hide().fadeIn(2000);
-    $('body').append(item);
+    let $item = $("<div class='task-reward'><h3>REWARD</h3><span class='task-reward-content'>" + amount + "XP</span></div>").hide().fadeIn(2000);
+    $item.appendTo($('body'));
 
-    setTimeout(function () {
-        setTimeout(function () {
-            $('.task-reward').remove();
-        }, 2000);
-        $('.task-reward').fadeOut(1000);
-    }, 3000);
+    $item.delay(3000).fadeOut(1000, () => {
+        $item.remove();
+    });
 }

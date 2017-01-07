@@ -20,8 +20,11 @@ function displayLectures() {
         $items = $(".items");
 
         // Exclude the 'General' lecture
-        let taskNodes = document.querySelectorAll(".lecture:not(:first-child)");
-        taskNodes.forEach(createHammerForLectureNode);
+        let lectureNodes = document.querySelectorAll(".lecture:not(:first-child)");
+
+        for(let lecture of lectureNodes) {
+            createHammerForLectureNode(lecture);
+        }
 
         colorItems($items);
 
