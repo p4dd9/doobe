@@ -42,7 +42,6 @@ export default function taskForm(e) {
 
             console.log(workload);
 
-
             // hr, min, s, ms
             let due = new Date(Date.now() + days * 24 * 60 * 60 * 1000).getTime();
 
@@ -53,7 +52,7 @@ export default function taskForm(e) {
             task.name = name;
             task.due = due;
             task.workload = workload;
-            task.randomFactor = Math.floor(Math.random() * 5.0);
+            task.randomFactor = Math.floor(Math.random() * 50 + 1);
             task.lectureId = lectureId;
 
             console.log(task);

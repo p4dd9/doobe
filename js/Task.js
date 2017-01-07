@@ -45,12 +45,12 @@ export default class Task {
     }
 
     getXp() {
-        let elapsedTime = this.getTimeSpan(new Date());
-        let originalTimeSpan = this.getTimeSpan();
-        let totalXp = ((originalTimeSpan / elapsedTime) / this.getRemainingDays() / 1000) * 10 + this.getRemainingDays() * Math.PI * 5;
+        // HINT: xp based on miliseconds is baaaad ...
+        // let elapsedTime = this.getTimeSpan(new Date());
+        // let originalTimeSpan = this.getTimeSpan();
+        // let totalXp = ((originalTimeSpan / elapsedTime) / this.getRemainingDays() / 1000) * 10 + this.getRemainingDays() * Math.PI * 5;
+        // return Math.ceil(totalXp);
 
-        // return Math.ceil(totalXp); // possible: add random factor
-        let random = Math.floor(Math.random() * 5) + 1;
-        return this.getRemainingDays() * random;
+        return Math.ceil(this.getRemainingDays() * this.toDocument().workload + this.toDocument().randomFactor);
     }
 };
