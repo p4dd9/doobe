@@ -35,7 +35,6 @@ export default class Rank {
 
     static getMaxXpForLevel(level) {
         if (level <= 1) return 100;
-
         return level * 100 + Rank.getMaxXpForLevel(level - 1);
     }
 }

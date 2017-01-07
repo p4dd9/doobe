@@ -1,4 +1,3 @@
-import user from "./User";
 import $ from "jquery";
 import Rank from "./Rank";
 import page from "page";

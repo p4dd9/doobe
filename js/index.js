@@ -1,4 +1,3 @@
-// import user from './User'
 import * as database from "./database";
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
