@@ -66,7 +66,7 @@ h2 {
 }
 
 /*task*/
-.task, .lecture {
+.task, .lecture, .lecture-form {
   font-family: 'Avenir', sans-serif;
   display: block;
   padding: 20px;
@@ -82,6 +82,27 @@ h2 {
   &__name {
     text-transform: uppercase;
   }
+}
+
+#lecture-name{
+  background-color: transparent;
+  padding: 0px;
+  margin: 20px;
+  text-align: left;
+}
+
+#lecture-add{
+  margin: 0px;
+  padding: 20px;
+  border-radius: 0;
+  float: right;
+}
+
+.lecture-form {
+  position: fixed;
+  width: 100%;
+  height: auto;
+  padding: 0px;
 }
 
 .task__description {
@@ -143,6 +164,10 @@ h2 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.control-bar__add-button{
+
 }
 
 .menu__item {
@@ -239,11 +264,6 @@ h2 {
   padding: 5px;
 }
 
-.lecture-form {
-  position: fixed;
-  bottom: 10vh;
-}
-
 @keyframes swing {
   0% {
     -webkit-transform: rotate(-6deg) translate(-50%, -50%);
@@ -318,6 +338,7 @@ select {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: $border-radius;
+  cursor: pointer;
 
   &.selected {
     background-color: $color-dark;
