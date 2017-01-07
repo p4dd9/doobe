@@ -59,6 +59,8 @@ export function getTasks() {
                     tasks.push(new Task(row.doc));
                 });
 
+                tasks.sort((a, b) => a.remainingDays - b.remainingDays);
+
                 resolve(tasks);
             }).catch(reject);
 

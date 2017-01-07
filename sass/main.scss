@@ -261,28 +261,25 @@ h2 {
   }
 }
 
-.task-form, .task-form-list  {
+.task-form, .task-form-list {
   display: block;
   height: 100%;
   background-color: #6596a1;
 }
 
-.task__form-item {
+.task-form__item {
   display: block;
+}
+
+.task-form__label {
+  display: inline-block;
+  width: 100px;
   padding: 20px;
 }
 
-.form-name {
-  width: 25%;
-}
-
-.workload-numbers {
+#task-form__workload {
   display: flex;
   justify-content: space-around;
-}
-
-#workload {
-  width: 100%;
 }
 
 select {
@@ -293,16 +290,12 @@ select {
   width: auto;
 }
 
-.lecture-item {
-  // padding: 20px;
-}
-
-.workload-num {
+.task-form__workload__number {
   border: 1px solid white;
   margin: 2px;
-  padding: 9px;
-}
+  padding: 8px;
 
-.selected {
-  background-color: #005964;
+  &.selected {
+    background-color: #005964;
+  }
 }
