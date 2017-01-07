@@ -1,10 +1,6 @@
-import * as database from "./database";
 import $ from "jquery";
 import page from "page";
 import Rank from "./Rank";
-
-export function initUi() {
-}
 
 export function colorItems($container) {
     let $children = $container.children();
