@@ -38,6 +38,9 @@ export default function taskForm(e) {
 
             let name = $("#task-name").val();
             let days = $("#remaining-days").val();
+            let workload = parseInt($(".selected").html());
+
+            console.log(workload);
 
 
             // hr, min, s, ms
@@ -49,6 +52,8 @@ export default function taskForm(e) {
 
             task.name = name;
             task.due = due;
+            task.workload = workload;
+            task.randomFactor = Math.floor(Math.random() * 5.0);
             task.lectureId = lectureId;
 
             console.log(task);
