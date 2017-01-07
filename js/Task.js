@@ -1,49 +1,46 @@
 export default class Task {
-    constructor({_id = Date.now().toString(),_rev, created = new Date(), daysToAdd = 5, text = "text"} = {}, lecture = "Mathematics") {
+    constructor({_id = Date.now().toString(), _rev, name, created = Date.now(), due, lectureId = "general", lectureName = "General"} = {}) {
         this._id = _id;
         this._rev = _rev;
-        this.type = 'task';
+        this.name = name;
         this.created = created;
-        this.due = this.setDueDate(new Date(), daysToAdd);
-        this.text = text;
-        this.remainingDays = this.getRemainingDays();
+        this.due = due;
+        this.lectureId = lectureId;
+        // Calculated members, these won't be stored in the database
+        this.lectureName = lectureName;
         this.xp = this.getXp();
-        this.lecture = lecture.toString();
+        this.remainingDays = this.getRemainingDays();
     }
 
-    setDueDate(date, days) {
-        let result = new Date(date);
-        result.setDate(result.getDate() + days);
-        return result;
+    toDocument() {
+        return {
+            _id: this._id,
+            _rev: this._rev,
+            name: this.name,
+            created: this.created,
+            due: this.due,
+            lectureId: this.lectureId,
+            type: "task"
+        }
     }
 
     getRemainingDays() {
         let day = 24 * 60 * 60 * 1000; // hrs, minuts, secs, milisecs
-
-        let createdInMs = this.created.getTime();
-        let dueDateInMs = this.due.getTime();
-
-        let differenceMs = dueDateInMs - createdInMs;
-
-        return Math.ceil(differenceMs / day);
+        return Math.round(this.getTimeSpan() / day);
     }
 
-    getOriginalTimeSpan() {
-        return this.due.getTime() - this.created.getTime();
-    }
-
-    getElapsedTime() {
+    getTimeSpan(due = this.due) {
         // console.log("Created Date:" + this.created.toString());
         // console.log("Created Date Secs:" + this.created.getTime());
         // console.log("Current Date:" + new Date().toString());
         // console.log("Current Date Secs:" + new Date().getTime());
 
-        return Date.now() - this.created.getTime();
+        return due - this.created;
     }
 
     getXp() {
-        let elapsedTime = this.getElapsedTime();
-        let originalTimeSpan = this.getOriginalTimeSpan();
+        let elapsedTime = this.getTimeSpan(new Date());
+        let originalTimeSpan = this.getTimeSpan();
         let totalXp = ((originalTimeSpan / elapsedTime) / this.getRemainingDays() / 1000) * 10 + this.getRemainingDays() * Math.PI * 5;
 
         // return Math.ceil(totalXp); // possible: add random factor

@@ -1,4 +1,4 @@
-import user from "./User"
+import * as database from "./database"
 import $ from "jquery";
 import {displayError, colorItems} from "./ui";
 import Lecture from "./Lecture";
@@ -15,11 +15,12 @@ export default function lectures() {
 }
 
 function displayLectures() {
-    user.getLectures().then(result => {
-        $content.html(lecturesTemplate({lectures: result}));
+    database.getLectures().then(lectures => {
+        $content.html(lecturesTemplate({lectures: lectures}));
         $items = $(".items");
 
-        let taskNodes = document.querySelectorAll(".lecture");
+        // Exclude the 'General' lecture
+        let taskNodes = document.querySelectorAll(".lecture:not(:first-child)");
         taskNodes.forEach(createHammerForLectureNode);
 
         colorItems($items);
@@ -31,7 +32,8 @@ function displayLectures() {
             $("#lecture-name").val("");
             let lecture = new Lecture({name: name});
 
-            user.addLecture(lecture).then(() => {
+            database.addLecture(lecture).then(result => {
+                console.log(result);
                 let $lecture = $(lectureTemplate({lecture: lecture}));
 
                 $lecture.hide();
@@ -76,7 +78,7 @@ function removeLecture(lectureNode) {
     let $lecture = $(lectureNode);
     let id = $lecture.attr("data-id");
 
-    user.removeLecture(id).then(() => {
+    database.removeLecture(id).then(() => {
         $lecture.slideUp(() => {
             $lecture.remove();
             colorItems($items);

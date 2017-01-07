@@ -1,6 +1,10 @@
 <div class="navigation-bar"><a href="/"><i class="fa fa-arrow-left"></i></a></div>
 
 <section class="items lectures">
+    <div class="lecture default">
+        <p class="lecture__name">General</p>
+    </div>
+
     {{#each lectures}}
         <div class="lecture" data-id={{this._id}}>
             <p class="lecture__name">{{this.name}}</p>
