@@ -1,13 +1,13 @@
 export default class Task {
-    constructor({_id = Date.now().toString(),_rev, created = new Date(), daysToAdd = 5, text = "text", xp = 70} = {}, lecture = "Mathematics") {
+    constructor({_id = Date.now().toString(),_rev, created = new Date(), daysToAdd = 5, text = "text"} = {}, lecture = "Mathematics") {
         this._id = _id;
         this._rev = _rev;
         this.type = 'task';
         this.created = created;
         this.due = this.setDueDate(new Date(), daysToAdd);
         this.text = text;
-        this.xp = this.getXp();
         this.remainingDays = this.getRemainingDays();
+        this.xp = this.getXp();
         this.lecture = lecture.toString();
     }
 
@@ -47,6 +47,7 @@ export default class Task {
         let totalXp = ((originalTimeSpan / elapsedTime) / this.getRemainingDays() / 1000) * 10 + this.getRemainingDays() * Math.PI * 5;
 
         // return Math.ceil(totalXp); // possible: add random factor
-        return this.getRemainingDays() * 12;
+        let random = Math.floor(Math.random() * 5) + 1;
+        return this.getRemainingDays() * random;
     }
 };
