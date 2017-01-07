@@ -18,6 +18,7 @@ $color-wrapper-control: #005964;
 $color-item: #337A83;
 $color-white: #e4efef;
 $color-dark: #102e30;
+$color-highlight: #63003b;
 
 $width-form: 240px;
 $border-radius: 5px;
@@ -29,10 +30,11 @@ $border-radius: 5px;
 }
 
 input {
+  outline: none;
   color: $color-dark;
   background: $color-white;
   border: none;
-  margin: 5px;
+  margin: 50px 5px 5px;
   width: $width-form;
   text-align: center;
   padding: 10px;
@@ -76,6 +78,7 @@ h2 {
   cursor: pointer;
 }
 
+
 .lecture {
   height: auto;
 
@@ -85,10 +88,14 @@ h2 {
 }
 
 #lecture-name{
+  font-family: 'Avenir', sans-serif;
   background-color: transparent;
-  padding: 0px;
-  margin: 20px;
+  padding: 20px;
+  margin: 0px;
   text-align: left;
+  width: 70%;
+  color: $color-white;
+  text-transform: uppercase;
 }
 
 #lecture-add{
@@ -96,11 +103,14 @@ h2 {
   padding: 20px;
   border-radius: 0;
   float: right;
+  width: 30%;
+  cursor: pointer;
 }
 
 .lecture-form {
-  position: fixed;
+  position: absolute;
   width: 100%;
+  bottom: 55px;
   height: auto;
   padding: 0px;
 }
@@ -148,8 +158,8 @@ h2 {
   min-height: 50px;
   height: 10vh;
   width: 100%;
-  background-color: $color-wrapper-control;
-  padding: 0 30px 0 30px;
+  background-color: $color-dark;
+  padding: 0;
 }
 
 .items {
@@ -166,9 +176,18 @@ h2 {
   transform: translateY(-50%);
 }
 
-.control-bar__add-button{
-
+.control-bar__items{
+  width: 100%;
 }
+.control-bar__items > *{
+  border-right: solid 2px $color-wrapper-background;
+  width: 33.33%;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1.90em;
+  color: $color-highlight;
+}
+
 
 .menu__item {
   text-align: center;
@@ -207,7 +226,7 @@ h2 {
 
 .current_progress {
   height: 25px;
-  background-color: #03a9f4;
+  background-color: $color-dark;
   width: 0;
   transition: width 1s;
 }
@@ -252,7 +271,7 @@ h2 {
   top: 40%;
   border-radius: 7px;
   -webkit-transform-origin: 50% 50%;
-  background-color: #03a9f4;
+  background-color: $color-highlight;
   animation: swing 3s infinite ease-in-out;
   box-shadow: 9px 10px 29px 0px rgba(0, 0, 0, 0.75);
 }
