@@ -18,14 +18,14 @@ export default function index() {
         $content.html(tasksTemplate({tasks: tasks}));
         $items = $(".items");
 
-        $('.task').on('click', function () {
-            let id = $(this).attr("data-id");
+        $('.task').on('click', '.task__edit', function () {
+            let id = $(this).parent().attr("data-id");
 
             page(`/task/${id}`);
         });
 
         let taskNodes = document.querySelectorAll('.task');
-        for(let node of taskNodes) {
+        for (let node of taskNodes) {
             createHammerForTaskNode(node);
         }
         // taskNodes.forEach(node => createHammerForTaskNode(node));
@@ -38,7 +38,7 @@ function createHammerForTaskNode(task) {
     let theTaskHammer = new Hammer(task);
 
     theTaskHammer.get('pan').set({
-        threshold: 50
+        threshold: 20
     });
 
     theTaskHammer.on('panend', event => {
@@ -50,6 +50,9 @@ function createHammerForTaskNode(task) {
                 removeTask(task);
                 break;
         }
+
+        // $(task).delay(500).on("click tap", handleTaskClick);
+
     });
 }
 
