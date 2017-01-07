@@ -19,7 +19,7 @@ export default function index() {
         $items = $(".items");
 
         $('.task').on('click', function () {
-            let id = $(this).attr("id");
+            let id = $(this).attr("data-id");
 
             page(`/task/${id}`);
         });
