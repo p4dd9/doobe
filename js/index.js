@@ -10,9 +10,6 @@ let $items;
 
 export default function index() {
     $content = $('.content');
-    $('.control-bar__add-button').on('tap click', function () {
-        $('.menu').fadeOut();
-    });
 
     database.getTasks().then(tasks => {
         $content.html(tasksTemplate({tasks: tasks}));
@@ -80,7 +77,7 @@ function finishTask(task) {
             if (rank.addXp(task.xp)) {
                 ui.displayLevelReward();
             }
-            ui.updateRank(rank);
+            ui.displayRank(rank);
             ui.displayXpReward(task.xp);
 
             database.updateRank(rank).catch(ui.displayError);

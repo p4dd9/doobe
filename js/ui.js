@@ -4,7 +4,6 @@ import page from "page";
 import Rank from "./Rank";
 
 export function initUi() {
-    database.getRank().then(updateRank).catch(displayError);
 }
 
 export function colorItems($container) {
@@ -24,7 +23,7 @@ export function displayError(error) {
     page("/error");
 }
 
-export function updateRank(rank) {
+export function displayRank(rank) {
     $(".current_progress").width(rank.xpInPercentage() + "%");
     $(".progress__information").html(rank.xp + "/" + Rank.getMaxXpForLevel(rank.level));
     $(".level-content").html(rank.level);

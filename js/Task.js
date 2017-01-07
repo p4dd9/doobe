@@ -51,6 +51,6 @@ export default class Task {
         // let totalXp = ((originalTimeSpan / elapsedTime) / this.getRemainingDays() / 1000) * 10 + this.getRemainingDays() * Math.PI * 5;
         // return Math.ceil(totalXp);
 
-        return Math.ceil(this.getRemainingDays() * this.toDocument().workload + this.toDocument().randomFactor);
+        return Math.ceil(this.getRemainingDays() * this.workload + this.randomFactor);
     }
 };

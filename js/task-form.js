@@ -1,10 +1,10 @@
 import * as database from './database';
 
 import $ from 'jquery';
-import taskFormTemplate from '../templates/task-form.hbs'
 import Task from './Task';
 import page from 'page';
 import {displayError} from './ui';
+import taskFormTemplate from '../templates/task-form.hbs'
 
 let $content, $taskName, $taskRemainingDays, $taskWorkload, $taskLecture;
 
@@ -41,8 +41,6 @@ export default function taskForm(context) {
             let randomFactor = Math.floor(Math.random() * 50 + 1);
             let lectureId = $taskLecture.find('option:selected').attr('data-id');
 
-            console.log(workload);
-
             // hr, min, s, ms
             let due = new Date(Date.now() + days * 24 * 60 * 60 * 1000).getTime();
 
@@ -55,8 +53,6 @@ export default function taskForm(context) {
                 task.randomFactor = randomFactor;
                 task.lectureId = lectureId;
             }
-
-            console.log(task);
 
             database.addTask(task).then(page('/')).catch(displayError);
         });
@@ -77,7 +73,7 @@ export default function taskForm(context) {
                     return this.innerHTML == task.workload;
                 }).addClass('selected');
                 $taskLecture.find(`option[data-id=${task.lectureId}]`).attr('selected', 'selected');
-            })
+            }).catch(displayError);
         }
     }).catch(displayError);
 }
