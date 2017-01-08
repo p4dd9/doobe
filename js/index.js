@@ -12,6 +12,8 @@ export default function index() {
     $content = $('.content');
 
     database.getTasks().then(tasks => {
+        database.getRank().then(ui.displayRank).catch(ui.displayError);
+
         $content.html(tasksTemplate({tasks: tasks}));
         $items = $(".items");
 

@@ -20,4 +20,3 @@ page();
 
 menu();
 
-database.getRank().then(ui.displayRank).catch(ui.displayError);
