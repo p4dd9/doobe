@@ -23,7 +23,6 @@ $color-highlight: #63003b;
 $width-form: 240px;
 $border-radius: 5px;
 
-
 * {
   box-sizing: border-box;
   color: $color-white;
@@ -78,7 +77,6 @@ h2 {
   cursor: pointer;
 }
 
-
 .lecture {
   height: auto;
 
@@ -87,7 +85,7 @@ h2 {
   }
 }
 
-#lecture-name{
+#lecture-name {
   font-family: 'Avenir', sans-serif;
   background-color: transparent;
   padding: 20px;
@@ -98,7 +96,7 @@ h2 {
   text-transform: uppercase;
 }
 
-#lecture-add{
+#lecture-add {
   margin: 0;
   padding: 20px;
   border-radius: 0;
@@ -167,21 +165,6 @@ h2 {
   overflow-y: scroll;
   background-color: white;
 }
-
-.control-bar__menu-button, .control-bar__add-button, .control-bar__home-button {
-  border-right: solid 2px $color-wrapper-background;
-  width: 32.9%;
-  text-align: center;
-  padding: 10px 0;
-  cursor: pointer;
-  font-size: 1.90em;
-}
-
-.control-bar__items{
-  width: 100%;
-}
-
-
 
 .menu__item {
   text-align: center;
@@ -258,6 +241,25 @@ h2 {
   background-color: $color-wrapper-control;
 }
 
+.bottom-bar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  justify-content: space-around;
+  //display: block;
+  //height: 50px;
+  background-color: $color-wrapper-control;
+}
+
+.bottom-bar__item {
+  //border-right: solid 2px $color-wrapper-background;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 2em;
+}
+
 .task-reward {
   position: absolute;
   padding: 20px;
@@ -324,13 +326,13 @@ h2 {
   margin: 5px;
 }
 
-#task-form__remaining-days{
+#task-form__remaining-days {
   width: $width-form;
   text-align: center;
   padding: 10px;
 }
 
-#task-form__lecture{
+#task-form__lecture {
   min-width: $width-form;
 }
 
