@@ -22,12 +22,12 @@ export function displayError(error) {
 export function displayRank(rank) {
     $(".current_progress").width(rank.xpInPercentage() + "%");
     $(".progress__information").html(rank.xp + "/" + Rank.getMaxXpForLevel(rank.level));
-    $(".level-content").html(rank.level);
+    $(".level").html(rank.level);
 }
 
 export function displayLevelReward() {
     $('.level-holder').css('animation', 'level-up 3s 1 ease-in-out');
-    $('.level-content').fadeOut(1000).fadeIn(1000);
+    $('.level').fadeOut(1000).fadeIn(1000);
 }
 
 export function displayXpReward(amount) {

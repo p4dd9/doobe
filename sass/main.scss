@@ -237,7 +237,8 @@ h2 {
 
 .navigation-bar {
   display: block;
-  height: 50px;
+  height: 56px;
+  padding: 8px 16px;
   background-color: $color-wrapper-control;
 }
 
@@ -246,18 +247,20 @@ h2 {
   position: fixed;
   bottom: 0;
   width: 100%;
-  justify-content: space-around;
-  //display: block;
-  //height: 50px;
+  height: 56px;
+  padding: 8px 16px;
   background-color: $color-wrapper-control;
 }
 
 .bottom-bar__item {
-  //border-right: solid 2px $color-wrapper-background;
+  flex: 1;
   text-align: center;
-  padding: 8px;
   cursor: pointer;
   font-size: 2em;
+}
+
+.bottom-bar__item:not(:last-child) {
+  border-right: solid 2px $color-wrapper-background;
 }
 
 .task-reward {
