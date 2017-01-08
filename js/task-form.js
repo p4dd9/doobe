@@ -21,7 +21,6 @@ export default function taskForm(context) {
         $taskWorkload = $('#task-form__workload');
         $taskLecture = $('#task-form__lecture');
 
-
         // WORKLOAD
         let $taskWorkloadNumbers = $('.task-form__workload__number');
 
