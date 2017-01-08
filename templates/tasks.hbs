@@ -1,5 +1,7 @@
 <div class="navigation-bar">
-    <div class="level-container">LEVEL:  <div class="level"></div></div>
+    <div class="level-container">LEVEL:
+        <div class="level"></div>
+    </div>
     <div class="control-bar__progress">
         <p class="progress__information">0 / 0</p>
         <div class="progress__progress-bar">
@@ -8,18 +10,20 @@
     </div>
 </div>
 
-
 <section class="items">
     {{#each tasks}}
         <div class="task" data-id={{this._id}}>
             <div class="task__description">
                 <h5 class="task__decription__title">{{this.name}}</h5>
-                <p class="task__decription__time">{{this.remainingDays}} days left! - {{this.lectureName}}</p>
+                <p class="task__decription__time">
+                    {{this.remainingDays}} day(s) remaining - {{this.lectureName}}
+                </p>
             </div>
 
             <div class="task__xp">{{this.xp}}</div>
-            <div class="task__edit"><i class="fa fa-pencil"></i> </div>
+            <div class="task__edit"><i class="fa fa-pencil"></i></div>
         </div>
     {{/each}}
 </section>
+
 

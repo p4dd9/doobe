@@ -32,7 +32,9 @@ export default class Task {
     getRemainingDays() {
         // hrs, minutes, secs, milisecs
         let day = 24 * 60 * 60 * 1000;
-        return Math.round(this.getTimeSpan() / day);
+        let days = Math.round(this.getTimeSpan() / day);
+        if (days < 0)  return 0;
+        else return days;
     }
 
     getTimeSpan(due = this.due) {
@@ -51,6 +53,6 @@ export default class Task {
         // let totalXp = ((originalTimeSpan / elapsedTime) / this.getRemainingDays() / 1000) * 10 + this.getRemainingDays() * Math.PI * 5;
         // return Math.ceil(totalXp);
 
-        return Math.ceil(this.getRemainingDays() * this.workload + this.randomFactor);
+        return Math.ceil(this.getRemainingDays() * this.workload); // + this.randomFactor --> recalculcated when editing/saving
     }
 };
