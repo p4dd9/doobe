@@ -32,4 +32,4 @@ Handlebars.registerHelper("remainingDays", remainingDays => {
     }
 
     return `${remainingDays} days left`;
-})
+});

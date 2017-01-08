@@ -15,18 +15,22 @@ export default class Rank {
         }
     }
 
+    //ToDo find better solution for correct Level Up looping
     addXp(value) {
         let maxXpForLevel = Rank.getMaxXpForLevel(this.level);
+        let maxXpDiff = 0;
 
         if (value + this.xp >= maxXpForLevel) {
-            this.xp = (this.xp + value) - maxXpForLevel;
-            this.level += 1;
-
-            return true;
+            while (value + this.xp >= maxXpForLevel) {
+                this.level += 1;
+                this.maxProgress = Rank.getMaxXpForLevel(this.level - 1);
+                maxXpDiff += this.maxProgress;
+                maxXpForLevel = Rank.getMaxXpForLevel(this.level);
+            }
+            this.xp = Math.abs((this.xp + value) - maxXpDiff);
+        } else {
+            this.xp += value
         }
-
-        this.xp += value;
-        return false
     }
 
     xpInPercentage() {
@@ -34,7 +38,7 @@ export default class Rank {
     }
 
     static getMaxXpForLevel(level) {
-        if (level <= 1) return 100;
+        if (level == 0) return 0;
         return level * 100 + Rank.getMaxXpForLevel(level - 1);
     }
 }

@@ -11,7 +11,7 @@ export default class Task {
         this.lectureId = lectureId;
         // Calculated members, these won't be stored in the database
         this.lectureName = lectureName;
-        this.xp = this.getXp();
+        this.xp = Math.max(this.getXp(), 0);
         this.remainingDays = this.getRemainingDays();
     }
 
@@ -32,9 +32,7 @@ export default class Task {
     getRemainingDays() {
         // hrs, minutes, secs, milisecs
         let day = 24 * 60 * 60 * 1000;
-        let days = Math.round(this.getTimeSpan() / day);
-        if (days < 0)  return 0;
-        else return days;
+        return Math.round(this.getTimeSpan() / day);
     }
 
     getTimeSpan(due = this.due) {
