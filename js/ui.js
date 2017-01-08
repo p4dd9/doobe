@@ -16,12 +16,12 @@ export function colorItems($container) {
 
 export function displayError(error) {
     console.log("display" + error);
-    page("/error");
+    page("/error");``
 }
 
 export function displayRank(rank) {
     $(".current_progress").width(rank.xpInPercentage() + "%");
-    $(".progress__information").html(rank.xp + "/" + Rank.getMaxXpForLevel(rank.level));
+    $(".progress__information").html(`${rank.xp} / ${Rank.getMaxXpForLevel(rank.level)}`);
     $(".level").html(rank.level);
 }
 
