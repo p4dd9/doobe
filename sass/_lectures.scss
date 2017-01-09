@@ -7,8 +7,7 @@
 }
 
 .lectures {
-  height: 100%;
-  margin-bottom: 56px;
+  margin-bottom: 112px;
 }
 
 #lecture-name {
@@ -22,22 +21,25 @@
   text-transform: uppercase;
 }
 
-#lecture-add {
-  margin: 0;
-  padding: 20px;
+.lecture-add {
+  //padding: 20px;
   border-radius: 0;
   float: right;
+  text-align: center;
+  padding: 4px 0;
   width: 30%;
   cursor: pointer;
 }
 
 .lecture-form {
-  background-color: $color-wrapper-background;
+  display: flex;
+  background-color: $color-wrapper-control;
   position: fixed;
+  z-index: 1;
   width: 100%;
-  bottom: $bottom-bar-height;
-  //height: auto;
-  padding: 0;
+  bottom: 56px;
+  height: 56px;
+  padding: 8px;
 }
 
 .lecture {

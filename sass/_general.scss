@@ -49,8 +49,11 @@ input {
 
 .content {
   display: block;
-  height: 100%;
-  margin-bottom: 56px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
 }
 
 .items, .task-form {
