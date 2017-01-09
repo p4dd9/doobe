@@ -44,10 +44,15 @@ input {
 .items {
   overflow-y: scroll;
   background-color: $color-white;
-  height: calc(100% - 112px);
+  //height: calc(100% - 112px);
 }
 
 .content {
   display: block;
-  height: 100vh;
+  height: 100%;
+  margin-bottom: 56px;
+}
+
+.items, .task-form {
+  margin-top: 56px;
 }

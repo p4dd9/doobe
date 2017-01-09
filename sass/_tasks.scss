@@ -16,7 +16,9 @@
 
 .task__xp, .task__edit {
   float: right;
-  padding: 15px 8px;
+  width: 32px;
+  padding: 15px 0;
+  text-align: end;
 }
 
 .task-form__workload__number {
@@ -36,4 +38,5 @@
 
 .task {
   @include blockdesign;
+  height: 90px;
 }

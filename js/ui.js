@@ -15,8 +15,8 @@ export function colorItems($container) {
 }
 
 export function displayError(error) {
-    console.log("display" + error);
-    page("/error");``
+    console.error(error);
+    page("/error");
 }
 
 export function displayRank(rank) {

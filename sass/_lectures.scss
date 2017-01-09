@@ -7,7 +7,8 @@
 }
 
 .lectures {
-  height: calc(100% - 202px);
+  height: 100%;
+  margin-bottom: 56px;
 }
 
 #lecture-name {
@@ -31,13 +32,14 @@
 }
 
 .lecture-form {
-  position: absolute;
+  background-color: $color-wrapper-background;
+  position: fixed;
   width: 100%;
-  bottom: 55px;
-  height: auto;
-  padding: 0px;
+  bottom: $bottom-bar-height;
+  //height: auto;
+  padding: 0;
 }
 
-.lecture, .lecture-form {
+.lecture {
   @include blockdesign;
 }
