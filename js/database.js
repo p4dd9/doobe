@@ -81,9 +81,7 @@ export function addTask(task) {
 
 export function removeTask(id) {
     return new Promise((resolve, reject) => {
-        // First get the task...
         database.get(id).then(function (doc) {
-            // ...then remove the task
             database.remove(doc).then(resolve).catch(reject);
         }).catch(resolve);
     });
@@ -91,9 +89,6 @@ export function removeTask(id) {
 
 // LECTURES
 
-/**
- * Returns all lectures as an array.
- */
 export function getLectures() {
     return new Promise((resolve, reject) => {
         database.query(doc => {
@@ -131,11 +126,6 @@ export function getLectureNames() {
     });
 }
 
-/**
- * Returns a lecture object for the given id.
- *
- * @param id the lecture id
- */
 export function getLecture(id) {
     return new Promise((resolve, reject) => {
         database.get(id).then(doc => resolve(new Lecture(doc))).catch(reject);

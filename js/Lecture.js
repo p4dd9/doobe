@@ -1,6 +1,5 @@
 export default class Lecture {
     constructor({_id = Date.now().toString(), _rev, name} = {}) {
-        // Database fields
         this._id = _id;
         this._rev = _rev;
         this.name = name;
