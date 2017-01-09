@@ -2,6 +2,7 @@ import * as database from "./database"
 import $ from "jquery";
 import {displayError, colorItems} from "./ui";
 import Lecture from "./Lecture";
+import Hammer from "hammerjs";
 import lectureTemplate from "../templates/lecture.hbs";
 import lecturesTemplate from "../templates/lectures.hbs";
 

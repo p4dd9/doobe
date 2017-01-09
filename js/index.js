@@ -2,6 +2,7 @@ import * as database from "./database";
 import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
 import page from "page";
+import Hammer from 'hammerjs';
 
 import * as ui from './ui';
 
