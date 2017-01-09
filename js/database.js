@@ -102,6 +102,8 @@ export function getLectures() {
                 lectures.push(new Lecture(row.doc));
             });
 
+            lectures.sort((a, b) => a._id - b._id);
+
             resolve(lectures);
         }).catch(reject);
     });
@@ -126,12 +128,6 @@ export function getLectureNames() {
     });
 }
 
-export function getLecture(id) {
-    return new Promise((resolve, reject) => {
-        database.get(id).then(doc => resolve(new Lecture(doc))).catch(reject);
-    });
-}
-
 export function addLecture(lecture) {
     return database.put(lecture.toDocument());
 }
@@ -149,10 +145,7 @@ export function removeLecture(id) {
 
                 result.rows.forEach(row => {
                     if (row.doc.lectureId === id) {
-                        console.log("hit");
                         row.doc.lectureId = "general";
-                        //     result.rows[i].doc.lecture = "General";
-                        //
                         tasks.push(new Task(row.doc).toDocument());
                     }
                 });

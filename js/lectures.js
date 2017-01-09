@@ -36,8 +36,7 @@ function displayLectures() {
             $lecture.val("");
             let lecture = new Lecture({name: name});
 
-            database.addLecture(lecture).then(result => {
-                console.log(result);
+            database.addLecture(lecture).then(() => {
                 let $lecture = $(lectureTemplate({lecture: lecture}));
 
                 $lecture.hide();
@@ -50,7 +49,7 @@ function displayLectures() {
                 createHammerForLectureNode($lecture[0])
 
             }).catch(displayError);
-        })
+        });
     }).catch(displayError);
 
 }
