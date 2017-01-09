@@ -22,11 +22,11 @@ menu();
 
 Handlebars.registerHelper("remainingDays", remainingDays => {
     if (remainingDays < 0) {
-        return `Due since ${Math.abs(remainingDays)} days!`
-    } else if (remainingDays == 0) {
-        return 'Due today!'
-    } else if (remainingDays == 1) {
-        return '1 day left!'
-    }
+        if(remainingDays == -1) return `Due since 1 day`;
+        else return `Due since ${Math.abs(remainingDays)} days`;
+    } else if (remainingDays == 0)
+        return 'Due today';
+    else if (remainingDays == 1)
+        return '1 day left';
     return `${remainingDays} days left`;
 });
