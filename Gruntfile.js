@@ -38,8 +38,6 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     base: './',
-                    hostname: '0.0.0.0',
-                    livereload: true,
                     open: true,
                     port: 3000,
                     middleware: (connect, options) => {
@@ -117,6 +115,6 @@ module.exports = function (grunt) {
     })
 
     grunt.registerTask('default', ['clean', 'browserify:dist'])
-    grunt.registerTask('start', ['default'])
+    grunt.registerTask('start', ['default', 'connect'])
 
 }
