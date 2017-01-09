@@ -117,6 +117,6 @@ module.exports = function (grunt) {
     })
 
     grunt.registerTask('default', ['clean', 'browserify:dist'])
-    grunt.registerTask('start', ['default', 'connect'])
+    grunt.registerTask('start', ['default'])
 
 }
