@@ -40,6 +40,7 @@
     "uglifyify": "^3.0.4"
   },
   "dependencies": {
+    "browserify": "^13.3.0",
     "pouchdb-browser": "^6.0.7"
   }
 }
