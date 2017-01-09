@@ -1,0 +1,43 @@
+.lecture {
+  height: auto;
+
+  &__name {
+    text-transform: uppercase;
+  }
+}
+
+.lectures {
+  height: calc(100% - 202px);
+}
+
+#lecture-name {
+  font-family: 'Avenir', sans-serif;
+  background-color: transparent;
+  padding: 20px;
+  margin: 0;
+  text-align: left;
+  width: 70%;
+  color: $color-white;
+  text-transform: uppercase;
+}
+
+#lecture-add {
+  margin: 0;
+  padding: 20px;
+  border-radius: 0;
+  float: right;
+  width: 30%;
+  cursor: pointer;
+}
+
+.lecture-form {
+  position: absolute;
+  width: 100%;
+  bottom: 55px;
+  height: auto;
+  padding: 0px;
+}
+
+.lecture, .lecture-form {
+  @include blockdesign;
+}
