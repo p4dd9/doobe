@@ -19,10 +19,9 @@ function displayLectures() {
         $content.html(lecturesTemplate({lectures: lectures}));
         $items = $(".items");
 
-        // Exclude the 'General' lecture
-        let lectureNodes = document.querySelectorAll(".lecture:not(:first-child)");
+        let lectureNodes = document.querySelectorAll(".lecture:not(:first-child)"); // exl. "General"
 
-        for(let lecture of lectureNodes) {
+        for (let lecture of lectureNodes) {
             createHammerForLectureNode(lecture);
         }
 
@@ -30,9 +29,10 @@ function displayLectures() {
 
         $(".lecture-form").submit(e => {
             e.preventDefault();
+            let $lecture = $("#lecture-name");
 
-            let name = $("#lecture-name").val();
-            $("#lecture-name").val("");
+            let name = $lecture.val();
+            $lecture.val("");
             let lecture = new Lecture({name: name});
 
             database.addLecture(lecture).then(result => {
@@ -57,11 +57,6 @@ function displayLectures() {
 function createHammerForLectureNode(lectureNode) {
     let hammer = new Hammer(lectureNode);
 
-    // Do we need swipe on the tasks?
-    /*hammer.get("swipe").set({
-     direction: Hammer.ALL
-     });*/
-
     hammer.get("pan").set({
         threshold: 50
     });
@@ -77,7 +72,6 @@ function createHammerForLectureNode(lectureNode) {
 }
 
 function removeLecture(lectureNode) {
-    // Maybe we could remove this wrapping somehow?
     let $lecture = $(lectureNode);
     let id = $lecture.attr("data-id");
 

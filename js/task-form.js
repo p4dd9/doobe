@@ -1,5 +1,4 @@
 import * as database from './database';
-
 import $ from 'jquery';
 import Task from './Task';
 import page from 'page';
@@ -21,7 +20,6 @@ export default function taskForm(context) {
         $taskWorkload = $('#task-form__workload');
         $taskLecture = $('#task-form__lecture');
 
-        // WORKLOAD
         let $taskWorkloadNumbers = $('.task-form__workload__number');
 
         $taskWorkloadNumbers.on('click tap', function () {
@@ -29,7 +27,6 @@ export default function taskForm(context) {
 
             $(this).addClass('selected');
         });
-        // END WORKLOAD
 
         $('.task-form').submit(e => {
             e.preventDefault();
@@ -37,10 +34,9 @@ export default function taskForm(context) {
             let name = $taskName.val();
             let days = $taskRemainingDays.val();
             let workload = parseInt($taskWorkload.find('.selected').html());
-            let randomFactor = Math.floor(Math.random() * 50 + 1);
+            let randomFactor = Math.floor(Math.random() * 50 + 1); // unused atm
             let lectureId = $taskLecture.find('option:selected').attr('data-id');
 
-            // hr, min, s, ms
             let due = new Date(Date.now() + days * 24 * 60 * 60 * 1000).getTime();
 
             if (task === undefined) {
@@ -60,10 +56,8 @@ export default function taskForm(context) {
         let id = context.params.id;
 
         if (id !== undefined) {
-            // We're viewing a task
             database.getTask(id).then(result => {
                 task = result;
-                console.log(task);
 
                 $taskName.val(task.name);
                 $taskRemainingDays.val(task.remainingDays);

@@ -19,7 +19,6 @@ export default function index() {
 
         $('.task').on('click', '.task__edit', function () {
             let id = $(this).parent().attr("data-id");
-
             page(`/task/${id}`);
         });
 
@@ -27,7 +26,6 @@ export default function index() {
         for (let node of taskNodes) {
             createHammerForTaskNode(node);
         }
-        // taskNodes.forEach(node => createHammerForTaskNode(node));
 
         ui.colorItems($items);
     }).catch(ui.displayError);
@@ -49,17 +47,12 @@ function createHammerForTaskNode(task) {
                 removeTask(task);
                 break;
         }
-
-        // $(task).delay(500).on("click tap", handleTaskClick);
-
     });
 }
 
 function removeTask(task) {
-    // Maybe we could remove this wrapping somehow?
     let $task = $(task);
     let id = $task.attr('data-id');
-    // console.log(id);
 
     database.removeTask(id).catch(ui.displayError);
 
@@ -70,7 +63,6 @@ function removeTask(task) {
 }
 
 function finishTask(task) {
-    // Maybe we could remove this wrapping somehow?
     let $task = $(task);
     let id = $task.attr('data-id');
 

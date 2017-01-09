@@ -1,6 +1,5 @@
 export default class Task {
     constructor({_id = Date.now().toString(), _rev, name, created = Date.now(), due, workload, randomFactor, lectureId = "general", lectureName = "General"} = {}) {
-        // Database fields
         this._id = _id;
         this._rev = _rev;
         this.name = name;
@@ -9,7 +8,7 @@ export default class Task {
         this.workload = workload;
         this.randomFactor = randomFactor;
         this.lectureId = lectureId;
-        // Calculated members, these won't be stored in the database
+
         this.lectureName = lectureName;
         this.xp = Math.max(this.getXp(), 0);
         this.remainingDays = this.getRemainingDays();
@@ -30,27 +29,15 @@ export default class Task {
     }
 
     getRemainingDays() {
-        // hrs, minutes, secs, milisecs
-        let day = 24 * 60 * 60 * 1000;
+        let day = 24 * 60 * 60 * 1000; // hrs, minutes, secs, milisecs
         return Math.round(this.getTimeSpan() / day);
     }
 
     getTimeSpan(due = this.due) {
-        // console.log("Created Date:" + this.created.toString());
-        // console.log("Created Date Secs:" + this.created.getTime());
-        // console.log("Current Date:" + new Date().toString());
-        // console.log("Current Date Secs:" + new Date().getTime());
-
         return due - this.created;
     }
 
     getXp() {
-        // HINT: xp based on miliseconds is baaaad ...
-        // let elapsedTime = this.getTimeSpan(new Date());
-        // let originalTimeSpan = this.getTimeSpan();
-        // let totalXp = ((originalTimeSpan / elapsedTime) / this.getRemainingDays() / 1000) * 10 + this.getRemainingDays() * Math.PI * 5;
-        // return Math.ceil(totalXp);
-
-        return Math.ceil(this.getRemainingDays() * this.workload); // + this.randomFactor --> recalculcated when editing/saving
+        return Math.ceil(this.getRemainingDays() * this.workload); // this.randomFactor
     }
 };

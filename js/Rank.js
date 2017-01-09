@@ -1,6 +1,5 @@
 export default class Rank {
     constructor({_rev, xp = 0, level = 1} = {}) {
-        // Database fields
         this._rev = _rev;
         this.xp = xp;
         this.level = level;
@@ -15,7 +14,6 @@ export default class Rank {
         }
     }
 
-    //ToDo find better solution for correct Level Up looping
     addXp(value) {
         let maxXpForLevel = Rank.getMaxXpForLevel(this.level);
         let maxXpDiff = 0;
