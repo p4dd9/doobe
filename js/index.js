@@ -3,7 +3,6 @@ import tasksTemplate from '../templates/tasks.hbs'
 import $ from 'jquery'
 import page from "page";
 import Hammer from 'hammerjs';
-
 import * as ui from './ui';
 
 let $content;
@@ -34,6 +33,15 @@ export default function index() {
 
 function createHammerForTaskNode(task) {
     let theTaskHammer = new Hammer(task);
+
+    theTaskHammer.get('press').set({
+        threshold: 5 // default 9
+    });
+
+    theTaskHammer.on('press', () => {
+        let id = $(task).attr("data-id");
+        page(`/task/${id}`);
+    });
 
     theTaskHammer.get('pan').set({
         threshold: 20
