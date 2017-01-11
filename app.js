@@ -554,6 +554,15 @@ function index() {
 function createHammerForTaskNode(task) {
     var theTaskHammer = new _hammerjs2.default(task);
 
+    theTaskHammer.get('press').set({
+        threshold: 5 // default 9
+    });
+
+    theTaskHammer.on('press', function () {
+        var id = (0, _jquery2.default)(task).attr("data-id");
+        (0, _page2.default)('/task/' + id);
+    });
+
     theTaskHammer.get('pan').set({
         threshold: 20
     });
@@ -804,6 +813,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+// import * as datepicker from 'bootstrap-datepicker';
+
 var $content = void 0,
     $taskName = void 0,
     $taskRemainingDays = void 0,
@@ -827,7 +838,6 @@ function taskForm(context) {
 
         $taskWorkloadNumbers.on('click tap', function () {
             $taskWorkloadNumbers.removeClass('selected');
-
             (0, _jquery2.default)(this).addClass('selected');
         });
 
@@ -29688,7 +29698,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<div class=\"top-bar\"><a href=\"/\"><i class=\"fa fa-arrow-left icon\"></i></a></div>\n\n<form class=\"task-form\">\n    <div class=\"task-form__item\">\n        <label for=\"task-form__name\" class=\"task-form__label\">Name</label>\n        <input type=\"text\" id=\"task-form__name\" placeholder=\"Name of the task...\" autocomplete=\"off\" required>\n    </div>\n\n    <div class=\"task-form__item\">\n        <label for=\"task-form__remaining-days\" class=\"task-form__label\">Days</label>\n        <input type=\"number\" id=\"task-form__remaining-days\" min=\"-3\" max=\"21\" value=\"3\" required>\n    </div>\n\n    <div class=\"task-form__item\">\n        <label class=\"task-form__label\">Workload</label>\n        <div>\n            <div id=\"task-form__workload\">\n                <span class=\"task-form__workload__number\">1</span>\n                <span class=\"task-form__workload__number\">2</span>\n                <span class=\"task-form__workload__number selected\">3</span>\n                <span class=\"task-form__workload__number\">5</span>\n                <span class=\"task-form__workload__number\">8</span>\n                <span class=\"task-form__workload__number\">13</span>\n                <span class=\"task-form__workload__number\">21</span>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"task-form__item\">\n        <label for=\"task-form__lecture\" class=\"task-form__label\">Lecture</label>\n        <select id=\"task-form__lecture\">\n            <option data-id=\"general\">General</option>\n"
+  return "<div class=\"top-bar\"><a href=\"/\"><i class=\"fa fa-arrow-left icon\"></i></a></div>\n\n<form class=\"task-form\">\n    <div class=\"task-form__item\">\n        <label for=\"task-form__name\" class=\"task-form__label\">Name</label>\n        <input type=\"text\" id=\"task-form__name\" pattern=\"^(?:\\S.{4,18}\\S)?$\" placeholder=\"Name of the task...\" autocomplete=\"off\" title=\"Input may not start or end with a whitespace.\" required>\n    </div>\n    <!-- ^(?:\\S.{4,18}\\S)?$ allow whitespace only between characters. Link: https://regex101.com/r/bS7jM5/1 -->\n\n    <div class=\"task-form__item\">\n        <label for=\"task-form__remaining-days\" class=\"task-form__label\">Days</label>\n        <input type=\"number\" id=\"task-form__remaining-days\" min=\"1\" max=\"21\" value=\"3\" pattern=\"\\d\" step=\"1\" required>\n    </div>\n\n    <div class=\"task-form__item\">\n        <label class=\"task-form__label\">Workload</label>\n        <div>\n            <div id=\"task-form__workload\">\n                <span class=\"task-form__workload__number\">1</span>\n                <span class=\"task-form__workload__number\">2</span>\n                <span class=\"task-form__workload__number selected\">3</span>\n                <span class=\"task-form__workload__number\">5</span>\n                <span class=\"task-form__workload__number\">8</span>\n                <span class=\"task-form__workload__number\">13</span>\n                <span class=\"task-form__workload__number\">21</span>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"task-form__item\">\n        <label for=\"task-form__lecture\" class=\"task-form__label\">Lecture</label>\n        <select id=\"task-form__lecture\">\n            <option data-id=\"general\">General</option>\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.lectures : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        </select>\n    </div>\n\n    <div class=\"task-form__item\">\n        <input type=\"submit\" id=\"form-submit\" value=\"Save task\">\n    </div>\n</form>";
 },"useData":true});

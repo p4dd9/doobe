@@ -2,9 +2,9 @@
 
 ## Setup
 
-* `.idea`: IDE config nicht einchecken
-* - Man sollte keinen leeren Task hinzufügen können (Browserabhängig)
-* - Prüfung im "Days"-Feld auf Buchstaben oder negative Zahlen
-* + App ausführbar
-* + Responsive
-* + übersichtlicher Code
+* `.idea`: IDE config nicht einchecken // DONE
+* - Man sollte keinen leeren Task hinzufügen können (Browserabhängig) // DONE
+* - Prüfung im "Days"-Feld auf Buchstaben oder negative Zahlen // DONE, throws message when entering submit
+* + App ausführbar // Yey
+* + Responsive // Yey
+* + übersichtlicher Code // Yey

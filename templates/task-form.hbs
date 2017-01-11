@@ -3,12 +3,13 @@
 <form class="task-form">
     <div class="task-form__item">
         <label for="task-form__name" class="task-form__label">Name</label>
-        <input type="text" id="task-form__name" placeholder="Name of the task..." autocomplete="off" required>
+        <input type="text" id="task-form__name" pattern="^(?:\S.{4,18}\S)?$" placeholder="Name of the task..." autocomplete="off" title="Input may not start or end with a whitespace." required>
     </div>
+    <!-- ^(?:\S.{4,18}\S)?$ allow whitespace only between characters. Link: https://regex101.com/r/bS7jM5/1 -->
 
     <div class="task-form__item">
         <label for="task-form__remaining-days" class="task-form__label">Days</label>
-        <input type="number" id="task-form__remaining-days" min="1" max="21" value="3" required>
+        <input type="number" id="task-form__remaining-days" min="1" max="21" value="3" pattern="\d" step="1" required>
     </div>
 
     <div class="task-form__item">
