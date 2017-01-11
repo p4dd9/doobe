@@ -3,7 +3,8 @@ import $ from 'jquery';
 import Task from './Task';
 import page from 'page';
 import {displayError} from './ui';
-import taskFormTemplate from '../templates/task-form.hbs'
+import taskFormTemplate from '../templates/task-form.hbs';
+// import * as datepicker from 'bootstrap-datepicker';
 
 let $content, $taskName, $taskRemainingDays, $taskWorkload, $taskLecture;
 
@@ -24,7 +25,6 @@ export default function taskForm(context) {
 
         $taskWorkloadNumbers.on('click tap', function () {
             $taskWorkloadNumbers.removeClass('selected');
-
             $(this).addClass('selected');
         });
 

@@ -1,40 +1,11 @@
-# Projektinformation
-Name: DOOBE (immer GROßGESCHRIEBEN)  
-Tags: todo, web-application, frontend  
-Entwicklung: Mobile-First  
-Browserunterstützung: Chrome, Firefox, (Edge, Safari)  
-Erkennungsfarbe: Blaue (assoz. mit Intelligenz, Selbstbewusstsein und Ambition)  
+Use***npm install***in the project directory to install all packages.  
+Next,***npm start***to run grunt.
 
-## Team
-Johannes Obermair  
-Patrick Obermüller  
-Valters Pukitis  
-
-## Prinzipien
-Wir sind ein geile Kombination als Team.  
-Jeder trägt Verantwortung für den Erfolg der Web Applikation.  
-Wir schaffen das. ~Bob d.B.  
-
-## Programmiersprachen + Tools
-HTML5, CSS3, JS (z.b. mit WebStorm, PHPStorm)
-CSS Präprozessor: SASS  
-
-## Links
-[Google Drive](https://drive.google.com/drive/folders/0BwLNptSY0yJ8T0xpcWt4TUFURkk) als Sammlung für Assets (Audio, Grafiken, Konzepte, ... )  
-[Trello](https://trello.com/doobe) gemeinsame Entwicklungs und Kommunkationsplattform (fixer Verlauf, aktuelle Standings, Aufgabenverteilung)  
-[WhatsApp](https://web.whatsapp.com/) als "on the fly" Kommunikationsplattform (temporäre Inhalte, Gedankenaustausch)  
-[GitLab](https://git.mediacube.at/MMP2a_obermair_obermueller_valters/DOOBE) (Codeplattform) 
-
-[Markdown Language Basics](https://help.twitch.tv/customer/portal/articles/839490-markdown-basics)  
-[SASS Lang.](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)  
-[HTML Validator](https://validator.w3.org/)
-[Semantic UI](http://semantic-ui.com/)  
-[Bootstrap](http://getbootstrap.com/)  
-*inaktiv* [Slack](https://vajopa.slack.com/messages/general/)
+# Projectinformation
 
 **Projectname** :  DOOBE
 
-**Description** :  A gamified ToDo Application for students
+**Description** :  A gamified ToDo SPA for students
 
 **Major**       :  MultiMediaTechnology - FH Salzburg
 
@@ -42,4 +13,54 @@ CSS Präprozessor: SASS
 
 **Authors**     :  Johannes Obermair, Patrick Obermueller, Valters Pukitis
 
-**Code**        :  HTML5, SASS/CSS, JS + ES6
+**Development** :  Mobile-First
+
+**Tags**        :  frontend, to-do, management, gamified
+
+## Languages & Tools
+* HTML5
+* CSS3 / SASS
+* HammerJS  
+* PouchDB  
+* jQuery  
+* Grunt  
+* Handlebars  
+* JS / ES6 features  
+* Babel  
+* Browserify  
+* weitere ...
+
+## Links
+[Google Drive](https://drive.google.com/drive/folders/0BwLNptSY0yJ8T0xpcWt4TUFURkk) 
+
+[Trello](https://trello.com/doobe)  
+
+[WhatsApp](https://web.whatsapp.com/)  
+
+[GitLab](https://git.mediacube.at/MMP2a_obermair_obermueller_valters/DOOBE)
+
+[Markdown](https://help.twitch.tv/customer/portal/articles/839490-markdown-basics)  
+
+[SASS](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)  
+
+[Semantic UI](http://semantic-ui.com/)  
+
+[Bootstrap](http://getbootstrap.com/)  
+
+[HammerJS](http://hammerjs.github.io/)
+
+[Handlebars](http://handlebarsjs.com/)
+
+[Grunt](http://gruntjs.com/)
+
+[PouchDB](https://pouchdb.com/)
+
+[jQuery](https://jquery.com/)
+
+[ES6 features](http://es6-features.org/#Constants)
+
+[NPM](https://www.npmjs.com/)
+
+[HTML Validator](https://validator.w3.org/)
+
+*inaktiv* [Slack](https://vajopa.slack.com/messages/general/)
