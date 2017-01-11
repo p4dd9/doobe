@@ -43,3 +43,11 @@ CSS Präprozessor: SASS
 **Authors**     :  Johannes Obermair, Patrick Obermueller, Valters Pukitis
 
 **Code**        :  HTML5, SASS/CSS, JS + ES6
+
+##Verbesserungsvorschläge
+
+- Man sollte keinen leeren Task hinzufügen können
+- Prüfung im "Days"-Feld auf Buchstaben oder negative Zahlen
++ App ausführbar
++ Responsive
++ übersichtlicher Code
